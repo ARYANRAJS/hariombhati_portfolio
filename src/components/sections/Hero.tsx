@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import { MagneticButton } from '../ui/MagneticButton';
 import { CountUp } from '../ui/CountUp';
 import PortraitBrushReveal from '../ui/PortraitBrushReveal';
+import CircularScrollBadge from '../ui/CircularScrollBadge';
 import { 
   ArrowDown, 
   ArrowUpRight, 
@@ -186,6 +187,11 @@ export function Hero() {
           </div>
 
         </div>
+      </div>
+
+      {/* Bottom Right: Circular Rotating Scroll Badge */}
+      <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 z-20">
+        <CircularScrollBadge targetId="about" />
       </div>
     </section>
   );
