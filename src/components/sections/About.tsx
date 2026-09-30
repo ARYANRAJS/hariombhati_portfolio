@@ -1,6 +1,9 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
+import TiltCard3D from '../ui/TiltCard3D';
+import GsapTextReveal from '../ui/GsapTextReveal';
 import { 
   Certificate, 
   Briefcase, 
@@ -11,6 +14,8 @@ import {
   ChartLineUp,
   Lightning
 } from '@phosphor-icons/react';
+
+const InteractiveGlobe3D = dynamic(() => import('../3d/InteractiveGlobe3D'), { ssr: false });
 
 const EXPERIENCES = [
   {
@@ -88,9 +93,9 @@ export function About() {
           <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
             About Me & Career History
           </div>
-          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.12] mb-6">
+          <GsapTextReveal as="h2" className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.12] mb-6">
             Bridging technical data architecture with profitable advertising.
-          </h2>
+          </GsapTextReveal>
           <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal">
             With a formal background in Computer Applications (B.Com & PGDCA), I approach performance marketing with an engineering mindset. I build first-party server tracking, analyze unit economics, and rapidly test creative angles to scale revenue sustainably.
           </p>
@@ -105,71 +110,84 @@ export function About() {
               My Technical Edge
             </h3>
 
-            <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
-                  <ShieldCheck size={20} weight="light" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white mb-1">
-                    First-Party Server Tracking
-                  </h4>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
-                    I build server-side GTM containers and Meta CAPI pipelines ensuring 95%+ event match quality and zero attribution blindness.
-                  </p>
+            <TiltCard3D maxTilt={6} scale={1.01}>
+              <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
+                    <ShieldCheck size={20} weight="light" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white mb-1">
+                      First-Party Server Tracking
+                    </h4>
+                    <p className="text-xs text-neutral-400 leading-relaxed">
+                      I build server-side GTM containers and Meta CAPI pipelines ensuring 95%+ event match quality and zero attribution blindness.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </TiltCard3D>
 
-            <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
-                  <ChartLineUp size={20} weight="light" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white mb-1">
-                    Margin-First Scaling
-                  </h4>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
-                    I calculate contribution margins and customer LTV before scaling budget caps, prioritizing real EBITDA over vanity ROAS.
-                  </p>
+            <TiltCard3D maxTilt={6} scale={1.01}>
+              <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
+                    <ChartLineUp size={20} weight="light" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white mb-1">
+                      Margin-First Scaling
+                    </h4>
+                    <p className="text-xs text-neutral-400 leading-relaxed">
+                      I calculate contribution margins and customer LTV before scaling budget caps, prioritizing real EBITDA over vanity ROAS.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </TiltCard3D>
 
-            <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
-                  <Lightning size={20} weight="light" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white mb-1">
-                    High-Velocity Creative Direction
-                  </h4>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
-                    I test 15+ ad creatives every month across different hooks and angles to consistently defeat ad fatigue.
-                  </p>
+            <TiltCard3D maxTilt={6} scale={1.01}>
+              <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
+                    <Lightning size={20} weight="light" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white mb-1">
+                      High-Velocity Creative Direction
+                    </h4>
+                    <p className="text-xs text-neutral-400 leading-relaxed">
+                      I test 15+ ad creatives every month across different hooks and angles to consistently defeat ad fatigue.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </TiltCard3D>
 
             {/* Certifications Box */}
-            <div className="glass-panel rounded-2xl p-6 border border-white/10 mt-2">
-              <div className="flex items-center gap-2 mb-4 text-xs font-mono uppercase tracking-widest text-neutral-400">
-                <Certificate size={16} className="text-white" />
-                <span>Certifications & Degrees</span>
-              </div>
-              <div className="flex flex-col gap-3">
-                {CREDENTIALS.map((cred, idx) => (
-                  <div key={idx} className="pb-3 border-b border-white/[0.06] last:border-b-0 last:pb-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-bold text-white tracking-tight">{cred.title}</span>
-                      <span className="text-[10px] font-mono text-neutral-400 whitespace-nowrap">{cred.period}</span>
+            <TiltCard3D maxTilt={5} scale={1.01}>
+              <div className="glass-panel rounded-2xl p-6 border border-white/10 mt-2">
+                <div className="flex items-center gap-2 mb-4 text-xs font-mono uppercase tracking-widest text-neutral-400">
+                  <Certificate size={16} className="text-white" />
+                  <span>Certifications & Degrees</span>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {CREDENTIALS.map((cred, idx) => (
+                    <div key={idx} className="pb-3 border-b border-white/[0.06] last:border-b-0 last:pb-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-bold text-white tracking-tight">{cred.title}</span>
+                        <span className="text-[10px] font-mono text-neutral-400 whitespace-nowrap">{cred.period}</span>
+                      </div>
+                      <span className="text-[11px] font-mono text-neutral-400">{cred.issuer}</span>
                     </div>
-                    <span className="text-[11px] font-mono text-neutral-400">{cred.issuer}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
+            </TiltCard3D>
+
+            {/* Interactive 3D Attribution Core */}
+            <div className="mt-2">
+              <InteractiveGlobe3D />
             </div>
           </div>
 
@@ -191,37 +209,36 @@ export function About() {
 
             <div className="flex flex-col gap-6">
               {EXPERIENCES.map((exp, idx) => (
-                <div
-                  key={idx}
-                  className="glass-panel glass-panel-hover rounded-3xl p-8 border border-white/10 relative"
-                >
-                  {/* Top Bar */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-4 border-b border-white/[0.06]">
-                    <div>
-                      <h4 className="text-lg font-bold text-white tracking-tight">
-                        {exp.role}
-                      </h4>
-                      <p className="text-xs font-mono text-neutral-400 mt-0.5">
-                        {exp.company}
-                      </p>
+                <TiltCard3D key={idx} maxTilt={4} scale={1.01}>
+                  <div className="glass-panel glass-panel-hover rounded-3xl p-8 border border-white/10 relative">
+                    {/* Top Bar */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-4 border-b border-white/[0.06]">
+                      <div>
+                        <h4 className="text-lg font-bold text-white tracking-tight">
+                          {exp.role}
+                        </h4>
+                        <p className="text-xs font-mono text-neutral-400 mt-0.5">
+                          {exp.company}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-mono text-neutral-400 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10">
+                          {exp.period}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono text-neutral-400 px-3 py-1 rounded-full bg-white/[0.03] border border-white/10">
-                        {exp.period}
-                      </span>
-                    </div>
-                  </div>
 
-                  {/* Highlights Bullet List */}
-                  <ul className="flex flex-col gap-3">
-                    {exp.highlights.map((point, pIdx) => (
-                      <li key={pIdx} className="flex items-start gap-3 text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                        <CheckCircle size={16} weight="fill" className="text-white shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                    {/* Highlights Bullet List */}
+                    <ul className="flex flex-col gap-3">
+                      {exp.highlights.map((point, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-3 text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                          <CheckCircle size={16} weight="fill" className="text-white shrink-0 mt-0.5" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </TiltCard3D>
               ))}
             </div>
 

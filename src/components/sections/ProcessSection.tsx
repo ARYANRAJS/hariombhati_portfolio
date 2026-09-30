@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Crosshair, Cpu, Graph, RocketLaunch, CheckCircle, ArrowRight } from '@phosphor-icons/react';
+import GsapTextReveal from '../ui/GsapTextReveal';
+import TiltCard3D from '../ui/TiltCard3D';
 
 interface Step {
   num: string;
@@ -94,9 +96,9 @@ export function ProcessSection() {
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
               My Growth Playbook
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+            <GsapTextReveal as="h2" className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
               How I Scale Brands Step by Step
-            </h2>
+            </GsapTextReveal>
           </div>
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
             Click any phase to see my exact deliverables

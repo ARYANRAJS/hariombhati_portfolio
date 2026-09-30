@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SpotlightCard } from '../ui/SpotlightCard';
+import TiltCard3D from '../ui/TiltCard3D';
+import GsapTextReveal from '../ui/GsapTextReveal';
 import { 
   HardDrives, 
   WhatsappLogo, 
@@ -164,9 +166,9 @@ export function SkillsMatrix() {
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
               Capabilities & Instrument Stack
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+            <GsapTextReveal as="h2" className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
               Tools & Technical Growth Stack
-            </h2>
+            </GsapTextReveal>
           </div>
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 max-w-sm sm:text-right">
             16 Commercial Instruments / Verified Deployments
@@ -207,49 +209,51 @@ export function SkillsMatrix() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <SpotlightCard className="p-6 h-full flex flex-col justify-between group">
-                    <div>
-                      {/* Top Bar with Icon & Tag */}
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/[0.08] transition-all">
-                          {tool.slug ? (
-                            <img
-                              src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
-                              alt={tool.name}
-                              className="w-5 h-5 transition-transform group-hover:scale-110"
-                              loading="lazy"
-                            />
-                          ) : FallbackIcon ? (
-                            <FallbackIcon size={20} weight="light" className="text-white transition-transform group-hover:scale-110" />
-                          ) : (
-                            <Cpu size={20} weight="light" className="text-white" />
-                          )}
+                  <TiltCard3D maxTilt={7} scale={1.02} className="h-full">
+                    <SpotlightCard className="p-6 h-full flex flex-col justify-between group">
+                      <div>
+                        {/* Top Bar with Icon & Tag */}
+                        <div className="flex items-center justify-between mb-5">
+                          <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/[0.08] transition-all">
+                            {tool.slug ? (
+                              <img
+                                src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
+                                alt={tool.name}
+                                className="w-5 h-5 transition-transform group-hover:scale-110"
+                                loading="lazy"
+                              />
+                            ) : FallbackIcon ? (
+                              <FallbackIcon size={20} weight="light" className="text-white transition-transform group-hover:scale-110" />
+                            ) : (
+                              <Cpu size={20} weight="light" className="text-white" />
+                            )}
+                          </div>
+
+                          <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
+                            {tool.proficiency}
+                          </span>
                         </div>
 
-                        <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
-                          {tool.proficiency}
-                        </span>
+                        {/* Tool Name & Category */}
+                        <h3 className="text-base font-bold text-white tracking-tight mb-1 group-hover:text-white transition-colors">
+                          {tool.name}
+                        </h3>
+                        <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
+                          {tool.category}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-xs text-neutral-400 leading-relaxed font-normal">
+                          {tool.description}
+                        </p>
                       </div>
 
-                      {/* Tool Name & Category */}
-                      <h3 className="text-base font-bold text-white tracking-tight mb-1 group-hover:text-white transition-colors">
-                        {tool.name}
-                      </h3>
-                      <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
-                        {tool.category}
+                      <div className="mt-6 pt-3 border-t border-white/[0.04] flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-neutral-600">
+                        <span>Production Ready</span>
+                        <span>Verified</span>
                       </div>
-
-                      {/* Description */}
-                      <p className="text-xs text-neutral-400 leading-relaxed font-normal">
-                        {tool.description}
-                      </p>
-                    </div>
-
-                    <div className="mt-6 pt-3 border-t border-white/[0.04] flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-neutral-600">
-                      <span>Production Ready</span>
-                      <span>Verified</span>
-                    </div>
-                  </SpotlightCard>
+                    </SpotlightCard>
+                  </TiltCard3D>
                 </motion.div>
               );
             })}

@@ -12,6 +12,8 @@ import {
   ShieldCheck,
   WhatsappLogo
 } from '@phosphor-icons/react';
+import TiltCard3D from '../ui/TiltCard3D';
+import GsapTextReveal from '../ui/GsapTextReveal';
 
 interface IndustryPreset {
   name: string;
@@ -115,9 +117,9 @@ export function GrowthSimulator() {
               <Calculator size={14} className="text-white" />
               <span>Interactive ROI Modeler</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+            <GsapTextReveal as="h2" className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
               Simulate Your Revenue Scale
-            </h2>
+            </GsapTextReveal>
           </div>
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 max-w-sm">
             Drag the sliders to project how Hariom's 5.5x–7.25x ROAS playbooks scale your unit economics.
@@ -128,7 +130,8 @@ export function GrowthSimulator() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Controls Panel (Left 6 cols) */}
-          <div className="lg:col-span-6 bg-[#111111] rounded-3xl p-8 sm:p-10 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+          <TiltCard3D maxTilt={4} scale={1.008} className="lg:col-span-6">
+            <div className="bg-[#111111] rounded-3xl p-8 sm:p-10 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
             
             {/* Step 1: Select Industry Preset */}
             <div className="mb-8">
@@ -214,11 +217,12 @@ export function GrowthSimulator() {
                 <span>7.5x (Peak Scale)</span>
               </div>
             </div>
-
           </div>
+          </TiltCard3D>
 
           {/* Output Card (Right 6 cols) */}
-          <div className="lg:col-span-6 bg-gradient-to-b from-[#161616] to-[#0f0f0f] rounded-3xl p-8 sm:p-10 border border-white/20 shadow-[0_30px_70px_rgba(0,0,0,0.9)] flex flex-col justify-between">
+          <TiltCard3D maxTilt={4} scale={1.008} className="lg:col-span-6">
+            <div className="w-full h-full bg-gradient-to-b from-[#161616] to-[#0f0f0f] rounded-3xl p-8 sm:p-10 border border-white/20 shadow-[0_30px_70px_rgba(0,0,0,0.9)] flex flex-col justify-between">
             <div>
               {/* Output Header */}
               <div className="flex items-center justify-between pb-6 mb-8 border-b border-white/[0.08]">
@@ -294,6 +298,7 @@ export function GrowthSimulator() {
             </div>
 
           </div>
+          </TiltCard3D>
 
         </div>
 

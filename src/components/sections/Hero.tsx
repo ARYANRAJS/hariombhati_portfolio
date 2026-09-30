@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { motion } from 'motion/react';
 import { MagneticButton } from '../ui/MagneticButton';
 import { CountUp } from '../ui/CountUp';
@@ -16,12 +17,18 @@ import {
   Certificate
 } from '@phosphor-icons/react';
 
+const HeroScene = dynamic(() => import('../3d/HeroScene'), { ssr: false });
+
 export function Hero() {
   return (
     <section
       id="home"
       className="relative min-h-[100dvh] flex items-center pt-24 pb-16 overflow-hidden architect-grid"
     >
+      {/* Interactive 3D Ambient WebGL Core & Orbiting Particles */}
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] opacity-25 pointer-events-none z-0 hidden sm:block">
+        <HeroScene />
+      </div>
 
       {/* Ambient background light glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-white/[0.03] rounded-full blur-[120px] pointer-events-none z-0" />

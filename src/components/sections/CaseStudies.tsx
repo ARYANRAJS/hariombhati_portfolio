@@ -4,6 +4,8 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from '@phosphor-icons/react';
+import TiltCard3D from '../ui/TiltCard3D';
+import GsapTextReveal from '../ui/GsapTextReveal';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,9 +116,9 @@ export function CaseStudies() {
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
               Featured Work
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+            <GsapTextReveal as="h2" className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
               Brands I Have Scaled
-            </h2>
+            </GsapTextReveal>
           </div>
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
             Scroll horizontally to navigate / 4 Proven Case Studies
@@ -131,10 +133,13 @@ export function CaseStudies() {
           className="flex flex-col lg:flex-row gap-8 px-6 sm:px-8 lg:px-12 w-full lg:w-max pb-16 lg:pb-0"
         >
           {CASE_STUDIES.map((study, idx) => (
-            <div
+            <TiltCard3D
               key={study.id}
-              className="w-full lg:w-[620px] flex-shrink-0 glass-panel glass-panel-hover rounded-2xl p-8 sm:p-10 flex flex-col justify-between"
+              maxTilt={7}
+              scale={1.015}
+              className="w-full lg:w-[620px] flex-shrink-0"
             >
+              <div className="w-full h-full glass-panel glass-panel-hover rounded-2xl p-8 sm:p-10 flex flex-col justify-between">
               <div>
                 {/* Card Meta */}
                 <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/[0.08]">
@@ -197,6 +202,7 @@ export function CaseStudies() {
                 </div>
               </div>
             </div>
+            </TiltCard3D>
           ))}
         </div>
       </div>
