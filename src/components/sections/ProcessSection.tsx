@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Crosshair, Cpu, Graph, RocketLaunch, CheckCircle, ArrowRight } from '@phosphor-icons/react';
 
@@ -80,42 +80,12 @@ const STEPS: Step[] = [
 
 export function ProcessSection() {
   const [activeStep, setActiveStep] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Auto-progress steps on scroll while user is scrolling through this section
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (containerRef.current) {
-            const rect = containerRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-
-            if (rect.top <= windowHeight * 0.4 && rect.bottom >= windowHeight * 0.4) {
-              const totalDistance = rect.height - windowHeight * 0.4;
-              const scrolledDistance = (windowHeight * 0.4) - rect.top;
-              const progress = Math.max(0, Math.min(1, scrolledDistance / totalDistance));
-              const stepIndex = Math.min(STEPS.length - 1, Math.floor(progress * STEPS.length));
-              setActiveStep(stepIndex);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const current = STEPS[activeStep];
   const IconComponent = current.icon;
 
   return (
-    <section id="process" ref={containerRef} className="relative bg-[#080808] py-28 border-t border-white/[0.08]">
+    <section id="process" className="relative bg-[#080808] py-28 border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
         {/* Section Header */}
