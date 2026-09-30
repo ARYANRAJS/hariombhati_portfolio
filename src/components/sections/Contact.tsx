@@ -13,19 +13,17 @@ import {
   CheckCircle,
   WarningCircle,
   ArrowSquareOut,
-  Key,
 } from '@phosphor-icons/react';
 import { getAssetPath } from '@/lib/paths';
 
-// EmailJS Service & Template IDs provided by Hariom Bhati
-const DEFAULT_SERVICE_ID = 'service_q41r5uk';
-const DEFAULT_TEMPLATE_ID = 'template_bu6r8da';
+// Credentials provided for direct message dispatch
+const SERVICE_ID = 'service_q41r5uk';
+const TEMPLATE_ID = 'template_bu6r8da';
+const PUBLIC_KEY = 'Oe3dtBvOH1vud1uDV';
 
 export function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [manualKey, setManualKey] = useState('');
-  const [showKeyInput, setShowKeyInput] = useState(false);
   const [lastSent, setLastSent] = useState<{ name: string; email: string; roleType: string } | null>(null);
 
   const [formData, setFormData] = useState({
@@ -39,18 +37,9 @@ export function Contact() {
     e.preventDefault();
     setErrorMessage(null);
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || DEFAULT_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || DEFAULT_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || manualKey.trim();
-
-    if (!publicKey) {
-      setStatus('error');
-      setErrorMessage(
-        'EmailJS Public Key is required to send emails directly. Please enter your Public Key from EmailJS Dashboard (Account > General > Public Key), or use direct email / WhatsApp.'
-      );
-      setShowKeyInput(true);
-      return;
-    }
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || PUBLIC_KEY;
 
     setStatus('sending');
 
@@ -84,16 +73,14 @@ export function Contact() {
           message: '',
         });
       } else {
-        throw new Error(`EmailJS returned status code ${res.status}: ${res.text}`);
+        throw new Error(`Dispatch failed with status ${res.status}`);
       }
     } catch (err: unknown) {
-      console.error('EmailJS dispatch failed:', err);
+      console.error('Message transmission error:', err);
       setStatus('error');
-      const errDetail =
-        (err as { text?: string; message?: string })?.text ||
-        (err as { text?: string; message?: string })?.message ||
-        'Unable to transmit message via EmailJS. Please verify your Public Key or reach out directly.';
-      setErrorMessage(errDetail);
+      setErrorMessage(
+        'Unable to deliver message right now. Please reach out directly via WhatsApp or personal email below.'
+      );
     }
   };
 
@@ -197,7 +184,7 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Direct Message Form with EmailJS */}
+          {/* Right Column: Direct Message Form */}
           <div className="lg:col-span-7">
             <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-white/10 relative">
               {status === 'success' ? (
@@ -210,7 +197,7 @@ export function Contact() {
                   </h3>
                   <p className="text-sm text-neutral-300 max-w-md mx-auto mb-6 font-normal leading-relaxed">
                     Thank you, <span className="text-white font-semibold">{lastSent?.name}</span>. Your inquiry regarding{' '}
-                    <span className="text-white font-mono text-xs">{lastSent?.roleType}</span> has been dispatched to Hariom's primary inbox (<span className="text-white font-mono text-xs">bhatih143@gmail.com</span> via EmailJS).
+                    <span className="text-white font-mono text-xs">{lastSent?.roleType}</span> has been dispatched directly to Hariom's primary inbox (<span className="text-white font-mono text-xs">bhatih143@gmail.com</span>).
                   </p>
                   <p className="text-xs text-neutral-400 mb-8">
                     Hariom typically responds within 24 hours. A copy has been logged.
@@ -220,7 +207,7 @@ export function Contact() {
                       setStatus('idle');
                       setErrorMessage(null);
                     }}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 hover:border-white text-xs font-mono uppercase tracking-widest text-white hover:bg-white/5 transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 hover:border-white text-xs font-mono uppercase tracking-widest text-white hover:bg-white/5 transition-all cursor-pointer"
                   >
                     <span>Send Another Note</span>
                   </button>
@@ -232,8 +219,9 @@ export function Contact() {
                       <h3 className="text-xl font-bold text-white tracking-tight">
                         Send Me a Direct Message
                       </h3>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-                        EmailJS Active
+                      <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        Direct Delivery
                       </span>
                     </div>
                     <p className="text-xs text-neutral-400">
@@ -241,7 +229,7 @@ export function Contact() {
                     </p>
                   </div>
 
-                  {/* Error / Missing Key Banner */}
+                  {/* Error Banner */}
                   {status === 'error' && errorMessage && (
                     <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-200 text-xs flex flex-col gap-3">
                       <div className="flex items-start gap-2.5">
@@ -251,37 +239,8 @@ export function Contact() {
                         </div>
                       </div>
 
-                      {showKeyInput && (
-                        <div className="pt-2 border-t border-red-500/20 flex flex-col gap-2">
-                          <label className="text-[11px] font-mono text-neutral-300 flex items-center gap-1.5">
-                            <Key size={14} className="text-white" />
-                            EmailJS Public Key (Account &gt; General &gt; Public Key):
-                          </label>
-                          <div className="flex gap-2">
-                            <input
-                              type="text"
-                              placeholder="Paste public_key here..."
-                              value={manualKey}
-                              onChange={(e) => setManualKey(e.target.value)}
-                              className="flex-1 px-3 py-2 rounded-lg bg-black/60 border border-white/20 text-white font-mono text-xs focus:outline-none focus:border-white"
-                            />
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                if (manualKey.trim()) {
-                                  handleSubmit(e);
-                                }
-                              }}
-                              className="px-4 py-2 rounded-lg bg-white text-black font-semibold text-xs hover:bg-neutral-200 transition-colors"
-                            >
-                              Retry
-                            </button>
-                          </div>
-                        </div>
-                      )}
-
                       {/* Direct Mailto Emergency Fallback */}
-                      <div className="flex items-center justify-between pt-1">
+                      <div className="flex items-center justify-between pt-1 border-t border-red-500/20">
                         <span className="text-[11px] text-neutral-400">Prefer standard mail?</span>
                         <a
                           href={mailtoFallback}
@@ -378,9 +337,12 @@ export function Contact() {
                     </MagneticButton>
                   </div>
 
-                  <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 pt-1">
-                    <span>Service: <code className="text-neutral-300">service_q41r5uk</code></span>
-                    <span>Template: <code className="text-neutral-300">template_bu6r8da</code></span>
+                  <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500 pt-1">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      Direct Inbox Transmission
+                    </span>
+                    <span>Average response &lt; 24h</span>
                   </div>
                 </form>
               )}

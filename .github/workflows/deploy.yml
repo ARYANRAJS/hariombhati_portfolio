@@ -38,6 +38,9 @@ jobs:
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: "/hariombhati_portfolio"
+          NEXT_PUBLIC_EMAILJS_SERVICE_ID: "service_q41r5uk"
+          NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: "template_bu6r8da"
+          NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: "Oe3dtBvOH1vud1uDV"
 
       - name: Prevent Jekyll Processing for Next.js Underscore Folders
         run: touch ./out/.nojekyll
