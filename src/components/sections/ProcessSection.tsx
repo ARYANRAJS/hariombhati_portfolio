@@ -18,14 +18,14 @@ interface Step {
 const STEPS: Step[] = [
   {
     num: '01',
-    shortLabel: 'Audit & Diagnostics',
-    title: 'Audit & Diagnostic Review',
-    subtitle: 'Uncovering Capital Leakage',
+    shortLabel: 'Diagnostics',
+    title: 'How I Audit Your Accounts',
+    subtitle: 'Step 01 / Uncovering Capital Leakage',
     impactMetric: '100% Signal Audit',
-    description: 'A forensic review of historical account data, attribution discrepancy between ad managers and Shopify/CRM, and audience saturation checks to eliminate wasted ad spend.',
+    description: 'I conduct a forensic review of your historical ad spend, tracking accuracy, audience saturation, and discrepancies between ad platform reporting and actual bank revenue.',
     deliverables: [
-      'Telemetry & Pixel Signal Audit',
-      'Creative Fatigue & Audience Saturation',
+      'Telemetry & Pixel Health Audit',
+      'Creative Fatigue & Saturation Analysis',
       'Unit Economics & CAC Baselines',
       'Historical Campaign Post-Mortem',
     ],
@@ -33,13 +33,13 @@ const STEPS: Step[] = [
   },
   {
     num: '02',
-    shortLabel: 'Tracking Architecture',
-    title: 'Funnel & Tracking Architecture',
-    subtitle: 'Eliminating Data Blindspots',
+    shortLabel: 'Tracking Setup',
+    title: 'How I Fix Your Tracking & Funnels',
+    subtitle: 'Step 02 / Eliminating Data Blindspots',
     impactMetric: '95%+ Match Quality',
-    description: 'Setting up enterprise-grade tracking with Meta CAPI and Google Tag Manager server container. Optimizing landing pages and checkout friction points for maximum conversion.',
+    description: 'I set up first-party server-side tracking via GTM and Meta CAPI to eliminate signal loss from iOS and ad-blockers, while optimizing landing page checkout friction.',
     deliverables: [
-      'Server-Side GTM Container',
+      'Server-Side GTM Container Setup',
       'Custom GA4 E-Commerce Funnel',
       'AOV Bundle & Checkout CRO',
       'UTM Attribution Taxonomy',
@@ -48,31 +48,31 @@ const STEPS: Step[] = [
   },
   {
     num: '03',
-    shortLabel: 'Algorithmic Execution',
-    title: 'Algorithmic Execution',
-    subtitle: 'Systematic Creative Velocity',
+    shortLabel: 'Creative Testing',
+    title: 'How I Execute & Test Creatives',
+    subtitle: 'Step 03 / High-Velocity Iteration',
     impactMetric: '15+ Creatives / Month',
-    description: 'Deploying structured testing frameworks across hook angles, video formats, and messaging pillars. Identifying statistically significant winners with minimal testing budget.',
+    description: 'I build structured creative testing cycles where I test 15+ ad concepts each month across hooks, UGC angles, and formats to discover breakout winners fast.',
     deliverables: [
       'Advantage+ Campaign Architecture',
-      'Dynamic Catalog Feed Testing',
-      '15+ Creative Variations / Month',
-      'Real-Time Fatigue Detection',
+      'Dynamic Product Feed Testing',
+      '15+ High-Hook Creatives / Month',
+      'Creative Fatigue Warning Alarms',
     ],
     icon: Graph,
   },
   {
     num: '04',
     shortLabel: 'Scale & Profit',
-    title: 'Scale & Profit Maximization',
-    subtitle: 'Aggressive Capital Allocation',
+    title: 'How I Scale Revenue & Profit',
+    subtitle: 'Step 04 / Aggressive Capital Allocation',
     impactMetric: '4x to 7x Target ROAS',
-    description: 'Safely ramping budget on validated winning assets without spiking CPA. Expanding horizontally into Google Performance Max, YouTube, and retention remarketing.',
+    description: 'Once winners are proven, I safely scale daily ad spend without spiking acquisition costs, expanding horizontally into Google Performance Max and retargeting.',
     deliverables: [
       'Horizontal & Vertical Budget Scaling',
-      'Multi-Touch Attribution Monitoring',
+      'Multi-Touch Attribution Tracking',
       'Weekly EBITDA & ROAS Accounting',
-      'LTV Re-engagement Funnels',
+      'Customer LTV Re-engagement Funnels',
     ],
     icon: RocketLaunch,
   },
@@ -93,7 +93,6 @@ export function ProcessSection() {
             const rect = containerRef.current.getBoundingClientRect();
             const windowHeight = window.innerHeight;
 
-            // When section is in viewport, calculate scroll progress through the section
             if (rect.top <= windowHeight * 0.4 && rect.bottom >= windowHeight * 0.4) {
               const totalDistance = rect.height - windowHeight * 0.4;
               const scrolledDistance = (windowHeight * 0.4) - rect.top;
@@ -123,18 +122,18 @@ export function ProcessSection() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-8 mb-16">
           <div>
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
-              Execution Methodology
+              My Growth Playbook
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-              The 4-Step Growth Engine
+              How I Scale Brands Step by Step
             </h2>
           </div>
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
-            Click any step to inspect deliverables / Systematic Repeatability
+            Click any phase to see my exact deliverables
           </p>
         </div>
 
-        {/* Step Selector Tabs (Zero Overlap, Clean Interactive Navigation) */}
+        {/* Step Selector Tabs */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
           {STEPS.map((step, idx) => {
             const isCurrent = idx === activeStep;
@@ -156,18 +155,18 @@ export function ProcessSection() {
                     <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                   )}
                 </div>
-                <div className="font-semibold text-xs sm:text-sm tracking-tight text-white mb-1 truncate">
+                <div className="font-bold text-xs sm:text-sm tracking-tight text-white mb-1 truncate">
                   {step.shortLabel}
                 </div>
                 <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-500 truncate">
-                  {step.subtitle}
+                  Phase {step.num}
                 </div>
               </button>
             );
           })}
         </div>
 
-        {/* Main Stage Card (Isolated Stage with AnimatePresence: Mathematically impossible to overlap text) */}
+        {/* Main Stage Card */}
         <div className="relative min-h-[460px] sm:min-h-[420px] bg-[#111111] rounded-3xl p-8 sm:p-12 lg:p-14 border border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.9)] overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -179,7 +178,7 @@ export function ProcessSection() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
             >
               
-              {/* Left Column: Big Step Meta */}
+              {/* Left Column */}
               <div className="lg:col-span-5 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-4 mb-6">
@@ -202,7 +201,7 @@ export function ProcessSection() {
                   {/* Impact Metric Badge */}
                   <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white/[0.04] border border-white/15">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400">
-                      Standard KPI:
+                      Target Outcome:
                     </span>
                     <span className="text-xs font-mono font-bold text-white">
                       {current.impactMetric}
@@ -213,11 +212,11 @@ export function ProcessSection() {
                 <div className="hidden lg:flex items-center gap-3 pt-10 text-xs font-mono text-neutral-500">
                   <span>Phase {current.num} of 04</span>
                   <span>/</span>
-                  <span>Full-Funnel Ownership</span>
+                  <span>Full Hands-on Ownership</span>
                 </div>
               </div>
 
-              {/* Right Column: Narrative & Key Deliverables */}
+              {/* Right Column */}
               <div className="lg:col-span-7 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-white/[0.08] pt-6 lg:pt-0 lg:pl-10">
                 <div>
                   <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal mb-8">
@@ -225,7 +224,7 @@ export function ProcessSection() {
                   </p>
 
                   <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-4">
-                    Documented Deliverables
+                    What I Deliver In This Phase
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
@@ -241,7 +240,7 @@ export function ProcessSection() {
                   </div>
                 </div>
 
-                {/* Step Switcher Footer Controls */}
+                {/* Step Switcher Controls */}
                 <div className="flex items-center justify-between pt-6 border-t border-white/[0.06]">
                   <button
                     onClick={() => setActiveStep((prev) => (prev > 0 ? prev - 1 : STEPS.length - 1))}

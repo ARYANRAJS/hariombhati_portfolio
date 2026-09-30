@@ -46,11 +46,11 @@ export default function Home() {
         {/* 2. Key Proof Point Marquee */}
         <ResultsTicker />
 
-        {/* 3. Verified Case Studies (GSAP Horizontal Scroll) */}
-        <CaseStudies />
-
-        {/* 4. Strategic Edge & Attribution Philosophy */}
+        {/* 3. About Hariom Bhati: Technical Background & Certifications */}
         <About />
+
+        {/* 4. Brands I Have Scaled (GSAP Horizontal Scroll) */}
+        <CaseStudies />
 
         {/* 5. 4-Step Growth Methodology (GSAP Sticky Stack) */}
         <ProcessSection />

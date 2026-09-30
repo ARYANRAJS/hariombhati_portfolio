@@ -11,11 +11,12 @@ interface CaseStudy {
   id: string;
   client: string;
   category: string;
+  myRole: string;
   headline: string;
   roas: string;
   revenue: string;
   metricLabel: string;
-  strategy: string;
+  whatIDid: string;
   tags: string[];
 }
 
@@ -24,44 +25,48 @@ const CASE_STUDIES: CaseStudy[] = [
     id: 'modamecca',
     client: 'Modamecca Apparel',
     category: 'E-Commerce Fashion',
-    headline: 'Scaling seasonal fashion sales with Advantage+ Shopping and dynamic creative testing.',
+    myRole: 'Lead Performance Marketer',
+    headline: 'How I scaled seasonal fashion sales to ₹1.80L+ at 7.25x ROAS and slashed CPA by 38%.',
     roas: '7.25x',
     revenue: '₹1.80L+',
     metricLabel: '38% CPA Reduction',
-    strategy: 'Rebuilt top-of-funnel targeting around behavioral lookalikes and structured 15 high-converting video variations.',
+    whatIDid: 'Restructured the ad account with Meta Advantage+ Shopping, segmented top-of-funnel audiences with 1% behavioral lookalikes, and tested 15 high-converting video angles.',
     tags: ['Meta Advantage+', 'Dynamic Catalog', 'Creative Strategy'],
   },
   {
     id: 'parshwanath',
     client: 'Parshwanath Mart',
     category: 'Home & Kitchen D2C',
-    headline: 'Overcoming cold traffic resistance with bundle offers and direct messaging funnels.',
+    myRole: 'Growth & Funnel Strategist',
+    headline: 'How I drove 220+ orders with 5.27x ROAS by creating direct WhatsApp checkout funnels.',
     roas: '5.27x',
     revenue: '220+ Orders',
     metricLabel: 'Zero Ad Fatigue in 90 Days',
-    strategy: 'Deployed WhatsApp business API click-to-chat ads combined with value-pack bundling that raised average order value.',
-    tags: ['Meta Ads', 'WhatsApp Funnels', 'AOV Optimization'],
+    whatIDid: 'Created click-to-WhatsApp ad funnels for immediate friction-free buying, combined with bundle offer structures that significantly boosted Average Order Value (AOV).',
+    tags: ['WhatsApp Funnels', 'Meta Ads', 'AOV Optimization'],
   },
   {
     id: 'vidyalaybox',
     client: 'VidyalayBox',
     category: 'EdTech & B2B SaaS',
-    headline: 'Securing #1 Google organic rankings for high-intent school management software queries.',
+    myRole: 'SEO & Inbound Lead Architect',
+    headline: 'How I ranked VidyalayBox #1 on Google for high-intent school software queries with zero ad spend.',
     roas: 'Infinite',
     revenue: '#1 Rank',
     metricLabel: 'Zero Paid Ad Spend',
-    strategy: 'Engineered programmatic landing pages, technical site architecture, and targeted long-tail commercial keyword clusters.',
-    tags: ['Search Engine Optimization', 'B2B Funnels', 'Technical SEO'],
+    whatIDid: 'Engineered programmatic landing pages, targeted long-tail commercial intent keywords, and built clean technical site architecture for rapid organic lead generation.',
+    tags: ['Programmatic SEO', 'B2B Funnels', 'Technical SEO'],
   },
   {
     id: 'kgnstore',
     client: 'KGN Retail Store',
     category: 'Electronics & Retail',
-    headline: 'Eliminating conversion drop-offs through server-side GA4 and Meta CAPI integration.',
+    myRole: 'Telemetry & Attribution Engineer',
+    headline: 'How I reduced acquisition cost by $90 by fixing tracking with Server-Side GA4 and Meta CAPI.',
     roas: '4.80x',
     revenue: '-$90 CPA',
     metricLabel: '100% Signal Match Quality',
-    strategy: 'Implemented Google Tag Manager server container with automatic event deduplication and enriched purchase attribution.',
+    whatIDid: 'Implemented a server-side Google Tag Manager container on a custom first-party domain with event deduplication, giving algorithms accurate conversion signals.',
     tags: ['Server-Side GTM', 'Meta CAPI', 'Attribution Modeling'],
   },
 ];
@@ -71,7 +76,6 @@ export function CaseStudies() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Only run GSAP horizontal scroll on desktop (min-width 1024px)
     const mm = gsap.matchMedia();
 
     mm.add('(min-width: 1024px)', () => {
@@ -108,19 +112,19 @@ export function CaseStudies() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-6">
           <div>
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
-              Selected Work
+              Featured Work
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-              Verified Case Studies
+              Brands I Have Scaled
             </h2>
           </div>
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
-            Scroll horizontally to navigate / 4 Flagship Projects
+            Scroll horizontally to navigate / 4 Proven Case Studies
           </p>
         </div>
       </div>
 
-      {/* Horizontal Pan Track (Desktop) / Vertical Stack (Mobile) */}
+      {/* Horizontal Pan Track */}
       <div className="lg:h-[80vh] flex items-center">
         <div
           ref={trackRef}
@@ -131,17 +135,17 @@ export function CaseStudies() {
               key={study.id}
               className="w-full lg:w-[620px] flex-shrink-0 glass-panel glass-panel-hover rounded-2xl p-8 sm:p-10 flex flex-col justify-between"
             >
-              {/* Top Meta */}
               <div>
+                {/* Card Meta */}
                 <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/[0.08]">
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-xs text-neutral-500">0{idx + 1}</span>
-                    <span className="text-xs font-mono uppercase tracking-widest text-white">
+                    <span className="text-xs font-mono uppercase tracking-widest text-white font-bold">
                       {study.client}
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-neutral-400 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02]">
-                    {study.category}
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02]">
+                    {study.myRole}
                   </span>
                 </div>
 
@@ -166,13 +170,13 @@ export function CaseStudies() {
                 </div>
 
                 {/* Narrative Headline */}
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-4 leading-snug">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 leading-snug">
                   {study.headline}
                 </h3>
 
-                {/* Strategy summary */}
-                <p className="text-sm text-neutral-400 leading-relaxed mb-6 font-normal">
-                  {study.strategy}
+                {/* What I Did */}
+                <p className="text-sm text-neutral-300 leading-relaxed mb-6 font-normal">
+                  {study.whatIDid}
                 </p>
               </div>
 

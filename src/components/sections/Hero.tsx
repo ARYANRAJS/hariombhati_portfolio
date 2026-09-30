@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { MagneticButton } from '../ui/MagneticButton';
 import { CountUp } from '../ui/CountUp';
-import { ArrowDown, ArrowUpRight } from '@phosphor-icons/react';
+import { ArrowDown, ArrowUpRight, DownloadSimple } from '@phosphor-icons/react';
 
 // Dynamic import for 3D HeroScene (WebGL)
 const HeroScene = dynamic(() => import('../3d/HeroScene'), {
@@ -24,37 +24,37 @@ export function Hero() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Focused Copy & CTAs */}
+          {/* Left Column: Personal Intro & CTAs */}
           <div className="lg:col-span-7 flex flex-col z-10">
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full border border-white/15 bg-white/[0.03] backdrop-blur-md mb-6 w-fit">
+            {/* Status Pill with Name */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md mb-6 w-fit">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
               </span>
-              <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-300">
-                Available for Full-Time Roles & Growth Audits
+              <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-200">
+                Hariom Bhati / Open for Full-Time Roles
               </span>
             </div>
 
-            {/* Headline (max 2 lines) */}
+            {/* Headline */}
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-6">
-              Engineering paid traffic into predictable revenue.
+              I turn paid traffic into scalable, profitable revenue.
             </h1>
 
-            {/* Subtext (max 20 words) */}
-            <p className="text-base sm:text-lg text-neutral-400 font-normal leading-relaxed mb-8 max-w-xl">
-              Scaling e-commerce brands through algorithmic Meta and Google ad funnels, server-side GA4 tracking, and data-backed creative testing.
+            {/* Personal Value Prop */}
+            <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed mb-8 max-w-xl">
+              Hi, I am a Performance Marketer and Growth Specialist. I help D2C e-commerce brands and startups scale profitably through Meta Ads, Google Ads, and server-side tracking.
             </p>
 
-            {/* CTA Group */}
+            {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <MagneticButton strength={0.3}>
                 <a
                   href="#case-studies"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all font-semibold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                 >
-                  <span>Explore Results</span>
+                  <span>Explore My Work</span>
                   <ArrowDown size={14} weight="bold" />
                 </a>
               </MagneticButton>
@@ -62,12 +62,21 @@ export function Hero() {
               <MagneticButton strength={0.25}>
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/20 hover:border-white/40 bg-white/[0.03] text-white hover:bg-white/[0.08] transition-all font-semibold text-xs uppercase tracking-wider backdrop-blur-sm"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/20 hover:border-white/40 bg-white/[0.03] text-white hover:bg-white/[0.08] transition-all font-bold text-xs uppercase tracking-wider backdrop-blur-sm"
                 >
-                  <span>Book Interview</span>
+                  <span>Hire Me</span>
                   <ArrowUpRight size={14} weight="bold" />
                 </a>
               </MagneticButton>
+
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white px-4 py-3 transition-colors"
+              >
+                <DownloadSimple size={15} />
+                <span>Resume (PDF)</span>
+              </a>
             </div>
 
             {/* Monospace Metric Strip */}

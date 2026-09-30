@@ -9,13 +9,12 @@ export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    roleType: 'Full-time Growth Role',
+    roleType: 'Full-time Growth Marketing Role',
     message: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate instant acknowledgement
     setSubmitted(true);
   };
 
@@ -24,20 +23,20 @@ export function Contact() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           
-          {/* Left Column: Direct Inquiries & Contact Channels */}
+          {/* Left Column: Personal Contact Information */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
-                Initiate Conversation
+                Get In Touch
               </div>
               <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-                Ready to scale your next growth milestone?
+                Let's discuss how I can help your team scale.
               </h2>
-              <p className="text-base text-neutral-400 leading-relaxed font-normal mb-10">
-                Currently open for full-time Growth Marketing roles, strategic advisory, or high-impact account audits. Let's discuss your revenue targets.
+              <p className="text-base text-neutral-300 leading-relaxed font-normal mb-10">
+                I am currently actively interviewing for full-time Performance Marketing and Growth Specialist roles. I also take on select performance audits for high-potential D2C brands.
               </p>
 
-              {/* Direct Reach Out Cards */}
+              {/* Direct Channels */}
               <div className="flex flex-col gap-4 mb-10">
                 
                 <a
@@ -49,9 +48,9 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">
-                      Direct Email
+                      Personal Email
                     </div>
-                    <div className="text-sm font-mono text-white">
+                    <div className="text-sm font-mono text-white font-semibold">
                       bhatih038@gmail.com
                     </div>
                   </div>
@@ -68,9 +67,9 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">
-                      Direct WhatsApp / Phone
+                      Direct WhatsApp / Call
                     </div>
-                    <div className="text-sm font-mono text-white">
+                    <div className="text-sm font-mono text-white font-semibold">
                       +91 6265966868
                     </div>
                   </div>
@@ -82,9 +81,9 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">
-                      Base Location
+                      Location
                     </div>
-                    <div className="text-sm font-mono text-white">
+                    <div className="text-sm font-mono text-white font-semibold">
                       Indore, MP, India (Remote & Hybrid Ready)
                     </div>
                   </div>
@@ -93,20 +92,20 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Resume / CV Link */}
+            {/* Resume Download */}
             <div>
               <a
                 href="/cv.pdf"
                 target="_blank"
-                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full border border-white/20 hover:border-white/40 bg-white/[0.04] text-xs font-mono uppercase tracking-wider text-white hover:bg-white/[0.08] transition-all"
               >
                 <DownloadSimple size={16} />
-                <span>Download Verified Curriculum Vitae (PDF)</span>
+                <span>Download Hariom Bhati's Resume (PDF)</span>
               </a>
             </div>
           </div>
 
-          {/* Right Column: Clean Interactive Form */}
+          {/* Right Column: Direct Message Form */}
           <div className="lg:col-span-7">
             <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-white/10">
               {submitted ? (
@@ -115,28 +114,37 @@ export function Contact() {
                     <PaperPlaneTilt size={24} weight="bold" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
-                    Inquiry Received
+                    Message Sent to Hariom
                   </h3>
-                  <p className="text-sm text-neutral-400 max-w-md mx-auto mb-8 font-normal">
-                    Thank you for reaching out. Hariom will respond to your email within 24 hours with scheduling details.
+                  <p className="text-sm text-neutral-300 max-w-md mx-auto mb-8 font-normal">
+                    Thank you for reaching out! I will check your note and reply within 24 hours to schedule a conversation.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
                     className="text-xs font-mono uppercase tracking-widest text-white border-b border-white pb-1"
                   >
-                    Send another message
+                    Send another note
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                   <div>
+                    <h3 className="text-xl font-bold text-white tracking-tight mb-1">
+                      Send Me a Message
+                    </h3>
+                    <p className="text-xs text-neutral-400 mb-6">
+                      Fill out the details below and I will get back to you directly.
+                    </p>
+                  </div>
+
+                  <div>
                     <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
-                      Full Name *
+                      Your Name *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Alex Morgan"
+                      placeholder="e.g. Alex Morgan (Hiring Manager / Founder)"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors"
@@ -145,7 +153,7 @@ export function Contact() {
 
                   <div>
                     <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
-                      Work Email *
+                      Your Work Email *
                     </label>
                     <input
                       type="email"
@@ -159,28 +167,28 @@ export function Contact() {
 
                   <div>
                     <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
-                      Opportunity Type
+                      Reason for Contact
                     </label>
                     <select
                       value={formData.roleType}
                       onChange={(e) => setFormData({ ...formData, roleType: e.target.value })}
                       className="w-full px-5 py-3.5 rounded-xl bg-[#111111] border border-white/15 focus:border-white text-white text-sm focus:outline-none transition-colors"
                     >
-                      <option value="Full-time Growth Role">Full-time Growth Marketing Role</option>
-                      <option value="Account Audit">Paid Traffic Performance Audit</option>
-                      <option value="Contract / Freelance Project">Contract / Advisory Project</option>
-                      <option value="General Inquiry">General Conversation</option>
+                      <option value="Full-time Growth Marketing Role">Full-time Growth / Performance Role</option>
+                      <option value="Ad Account Audit">Free Performance Marketing Audit</option>
+                      <option value="Consulting / Freelance Project">Advisory / Growth Consulting</option>
+                      <option value="Quick Networking Chat">General Networking / Intro Chat</option>
                     </select>
                   </div>
 
                   <div>
                     <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
-                      Project or Role Details *
+                      Message / Project Details *
                     </label>
                     <textarea
                       required
                       rows={4}
-                      placeholder="Tell me about your current ad spend, core KPIs, and immediate growth targets..."
+                      placeholder="Tell me about your brand, current challenges, or role expectations..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors resize-none"
@@ -190,9 +198,9 @@ export function Contact() {
                   <MagneticButton strength={0.2}>
                     <button
                       type="submit"
-                      className="w-full py-4 rounded-xl bg-white text-black hover:bg-neutral-200 transition-colors font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 mt-2 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                      className="w-full py-4 rounded-xl bg-white text-black hover:bg-neutral-200 transition-colors font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 mt-2 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                     >
-                      <span>Submit Inquiry</span>
+                      <span>Send Message to Hariom</span>
                       <PaperPlaneTilt size={16} weight="bold" />
                     </button>
                   </MagneticButton>

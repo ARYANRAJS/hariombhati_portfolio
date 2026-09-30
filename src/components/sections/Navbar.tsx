@@ -5,10 +5,11 @@ import { MagneticButton } from '../ui/MagneticButton';
 import { ArrowUpRight, List, X } from '@phosphor-icons/react';
 
 const NAV_LINKS = [
-  { label: 'Work', href: '#case-studies' },
-  { label: 'Philosophy', href: '#about' },
-  { label: 'System', href: '#process' },
-  { label: 'Stack', href: '#skills' },
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#case-studies' },
+  { label: 'Playbook', href: '#process' },
+  { label: 'Toolkit', href: '#skills' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export function Navbar() {
@@ -27,19 +28,24 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#080808]/80 backdrop-blur-xl border-b border-white/[0.08] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
-          : 'bg-transparent border-b border-transparent py-6'
+          ? 'bg-[#080808]/85 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
+          : 'bg-transparent border-b border-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
-        {/* Brand Monogram */}
+        {/* Brand Personal Monogram */}
         <a href="#home" className="group flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full border border-white/20 bg-white/[0.04] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:border-white transition-colors">
+          <div className="w-8 h-8 rounded-full border border-white/20 bg-white/[0.05] flex items-center justify-center font-mono text-xs font-bold text-white group-hover:border-white transition-colors">
             HB
           </div>
-          <span className="font-mono text-xs uppercase tracking-widest text-white/90 group-hover:text-white transition-colors">
-            Hariom Bhati
-          </span>
+          <div className="flex flex-col">
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-white">
+              Hariom Bhati
+            </span>
+            <span className="text-[10px] font-mono text-neutral-400">
+              Performance Marketer
+            </span>
+          </div>
         </a>
 
         {/* Desktop Navigation */}
@@ -57,12 +63,19 @@ export function Navbar() {
 
         {/* Action Button */}
         <div className="hidden md:flex items-center gap-4">
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            className="text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white transition-colors"
+          >
+            Resume
+          </a>
           <MagneticButton strength={0.25}>
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors text-xs font-semibold uppercase tracking-wider shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,255,255,0.15)]"
             >
-              <span>Get in Touch</span>
+              <span>Hire Me</span>
               <ArrowUpRight size={14} weight="bold" />
             </a>
           </MagneticButton>
@@ -93,14 +106,23 @@ export function Navbar() {
               </a>
             ))}
           </nav>
-          <a
-            href="#contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white text-black font-semibold text-xs uppercase tracking-wider"
-          >
-            <span>Get in Touch</span>
-            <ArrowUpRight size={14} weight="bold" />
-          </a>
+          <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              className="text-center py-2.5 rounded-full border border-white/15 text-xs font-mono uppercase tracking-wider text-white"
+            >
+              Download Resume
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider"
+            >
+              <span>Hire Me</span>
+              <ArrowUpRight size={14} weight="bold" />
+            </a>
+          </div>
         </div>
       )}
     </header>
