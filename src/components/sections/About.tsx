@@ -95,16 +95,16 @@ export function About() {
           
           {/* Left Column: Authentic Portrait & Personal Summary */}
           <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-28">
-            <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-[#111111] shadow-[0_20px_50px_rgba(0,0,0,0.8)] group">
+            <div className="relative max-w-[400px] w-full mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-white/15 bg-[#111111] shadow-[0_20px_50px_rgba(0,0,0,0.8)] group">
               {/* Hariom's Real Portrait */}
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-neutral-900">
+              <div className="relative w-full h-[420px] sm:h-[460px] overflow-hidden bg-neutral-900">
                 <Image
                   src="/hariom-bhati.jpg"
                   alt="Hariom Bhati - Digital Marketing Specialist"
                   fill
                   priority
                   className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 420px"
+                  sizes="(max-width: 1024px) 400px, 420px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent opacity-80" />
                 
