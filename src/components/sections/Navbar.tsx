@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: 'Projects', href: '#case-studies' },
   { label: 'Playbook', href: '#process' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Simulator', href: '#simulator' },
 ];
 
 export function Navbar() {
@@ -48,7 +49,7 @@ export function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
@@ -61,11 +62,11 @@ export function Navbar() {
         </nav>
 
         {/* Action Button */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           <a
             href="/cv.pdf"
             target="_blank"
-            className="text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white transition-colors"
+            className="text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white px-2 py-1 transition-colors"
           >
             Resume
           </a>
@@ -83,7 +84,7 @@ export function Navbar() {
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-neutral-400 hover:text-white transition-colors"
+          className="lg:hidden p-2 text-neutral-400 hover:text-white transition-colors"
           aria-label="Toggle navigation"
         >
           {mobileMenuOpen ? <X size={20} weight="bold" /> : <List size={20} weight="bold" />}
@@ -92,7 +93,7 @@ export function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#080808]/95 backdrop-blur-2xl border-b border-white/[0.08] px-6 py-8 flex flex-col gap-6">
+        <div className="lg:hidden bg-[#080808]/95 backdrop-blur-2xl border-b border-white/[0.08] px-6 py-8 flex flex-col gap-6">
           <nav className="flex flex-col gap-4">
             {NAV_LINKS.map((link) => (
               <a

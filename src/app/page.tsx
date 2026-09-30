@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 import SmoothScroll from '@/components/ui/SmoothScroll';
 import Navbar from '@/components/sections/Navbar';
@@ -8,7 +9,12 @@ import ResultsTicker from '@/components/sections/ResultsTicker';
 import About from '@/components/sections/About';
 import Footer from '@/components/sections/Footer';
 
-// Dynamic imports with ssr: false for GSAP scroll-triggered and heavy interactive components
+// Dynamic imports with ssr: false for GSAP scroll-triggered, Three.js 3D and heavy interactive components
+const Loader3D = dynamic(
+  () => import('@/components/ui/Loader3D'),
+  { ssr: false }
+);
+
 const CaseStudies = dynamic(
   () => import('@/components/sections/CaseStudies'),
   { ssr: false }
@@ -24,46 +30,61 @@ const SkillsMatrix = dynamic(
   { ssr: false }
 );
 
+const GrowthSimulator = dynamic(
+  () => import('@/components/sections/GrowthSimulator'),
+  { ssr: false }
+);
+
 const Contact = dynamic(
   () => import('@/components/sections/Contact'),
   { ssr: false }
 );
 
 export default function Home() {
+  const [loadingComplete, setLoadingComplete] = useState(false);
+
   return (
-    <SmoothScroll>
-      {/* Fixed Subtle Film Grain Texture */}
-      <div className="bg-grain" />
+    <>
+      {/* 3D Wireframe Loader with GSAP Counter & Split-Curtain Entrance */}
+      <Loader3D onLoadingComplete={() => setLoadingComplete(true)} />
 
-      {/* Global Minimalist Navigation */}
-      <Navbar />
+      <SmoothScroll>
+        {/* Fixed Subtle Film Grain Texture */}
+        <div className="bg-grain" />
 
-      {/* Main Narrative Sections */}
-      <main className="relative z-10 bg-[#080808]">
-        {/* 1. Immersive 3D Hero */}
-        <Hero />
+        {/* Global Minimalist Navigation */}
+        <Navbar />
 
-        {/* 2. Key Proof Point Marquee */}
-        <ResultsTicker />
+        {/* Main Narrative Sections */}
+        <main className="relative z-10 bg-[#080808]">
+          {/* 1. Immersive Editorial Hero */}
+          <Hero />
 
-        {/* 3. About Hariom Bhati: Technical Background & Certifications */}
-        <About />
+          {/* 2. Key Proof Point Marquee */}
+          <ResultsTicker />
 
-        {/* 4. Brands I Have Scaled (GSAP Horizontal Scroll) */}
-        <CaseStudies />
+          {/* 3. About Hariom Bhati: Technical Background & Verified Certifications */}
+          <About />
 
-        {/* 5. 4-Step Growth Methodology (GSAP Sticky Stack) */}
-        <ProcessSection />
+          {/* 4. Brands I Have Scaled (GSAP Horizontal Pan) */}
+          <CaseStudies />
 
-        {/* 6. Asymmetric Bento Skills & Telemetry Matrix */}
-        <SkillsMatrix />
+          {/* 5. 4-Step Growth Methodology */}
+          <ProcessSection />
 
-        {/* 7. Recruiter & Founder Conversion Channel */}
-        <Contact />
-      </main>
+          {/* 6. Asymmetric Bento Skills & Telemetry Matrix */}
+          <SkillsMatrix />
 
-      {/* Footer */}
-      <Footer />
-    </SmoothScroll>
+          {/* 7. Interactive Growth & ROAS Revenue Simulator */}
+          <GrowthSimulator />
+
+          {/* 8. Recruiter & Founder Conversion Channel */}
+          <Contact />
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </SmoothScroll>
+    </>
   );
 }
