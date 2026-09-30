@@ -25,6 +25,7 @@ export default function PortraitBrushReveal({
   className = '',
   priority = true,
 }: PortraitBrushRevealProps) {
+  const resolvedSrc = getAssetPath(src);
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colorImgRef = useRef<HTMLImageElement | null>(null);
@@ -41,12 +42,12 @@ export default function PortraitBrushReveal({
   useEffect(() => {
     const img = new window.Image();
     img.crossOrigin = 'anonymous';
-    img.src = getAssetPath(src);
+    img.src = resolvedSrc;
     img.onload = () => {
       colorImgRef.current = img;
       setImageLoaded(true);
     };
-  }, [src]);
+  }, [resolvedSrc]);
 
   // Synchronize canvas size with element display size
   const syncCanvasSize = useCallback(() => {
@@ -283,7 +284,7 @@ export default function PortraitBrushReveal({
       {/* ── Layer 1 (Underneath): Black & White Grayscale Base ── */}
       <div className="relative w-full h-full">
         <Image
-          src={src}
+          src={resolvedSrc}
           alt={alt}
           fill
           priority={priority}

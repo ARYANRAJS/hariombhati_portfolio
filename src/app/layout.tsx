@@ -81,8 +81,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/hariom-bhati.jpg',
+    icon: (process.env.NEXT_PUBLIC_BASE_PATH || '') + '/favicon.ico',
+    apple: (process.env.NEXT_PUBLIC_BASE_PATH || '') + '/hariom-bhati.jpg',
   },
 };
 

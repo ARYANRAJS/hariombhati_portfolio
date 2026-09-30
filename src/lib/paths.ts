@@ -15,6 +15,9 @@ export function getAssetPath(path: string): string {
     return path;
   }
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  if (basePath && path.startsWith(basePath)) {
+    return path;
+  }
   const clean = path.startsWith('/') ? path : `/${path}`;
   return `${basePath}${clean}`;
 }
