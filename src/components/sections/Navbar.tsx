@@ -1,144 +1,109 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import { MagneticButton } from '../ui/MagneticButton';
+import { ArrowUpRight, List, X } from '@phosphor-icons/react';
+
+const NAV_LINKS = [
+  { label: 'Work', href: '#case-studies' },
+  { label: 'Philosophy', href: '#about' },
+  { label: 'System', href: '#process' },
+  { label: 'Stack', href: '#skills' },
+];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 40);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Case Studies', href: '#case-studies' },
-    { name: 'Skills & Stack', href: '#skills' },
-    { name: 'ROI Calculator', href: '#calculator' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-[#090D14]/90 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl py-3.5' 
-        : 'bg-[#090D14]/50 backdrop-blur-md border-b border-white/[0.04] py-5'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-10">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="group flex items-center gap-2.5">
-              <span className="font-mono text-xl font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-                HB<span className="text-cyan-400">.</span>
-              </span>
-              <span className="hidden sm:inline-block text-[10px] font-mono uppercase tracking-widest text-gray-400 border-l border-white/10 pl-2.5">
-                Performance Lab
-              </span>
-            </Link>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[#080808]/80 backdrop-blur-xl border-b border-white/[0.08] py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
+          : 'bg-transparent border-b border-transparent py-6'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+        {/* Brand Monogram */}
+        <a href="#home" className="group flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full border border-white/20 bg-white/[0.04] flex items-center justify-center font-mono text-xs font-semibold text-white group-hover:border-white transition-colors">
+            HB
           </div>
+          <span className="font-mono text-xs uppercase tracking-widest text-white/90 group-hover:text-white transition-colors">
+            Hariom Bhati
+          </span>
+        </a>
 
-          {/* Desktop Nav with explicit gap */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href}
-                className="text-gray-400 hover:text-white transition-colors text-xs font-mono uppercase tracking-wider"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
-            <MagneticButton strength={0.25}>
-              <Link 
-                href="#contact"
-                className="inline-flex items-center gap-1.5 bg-white text-gray-950 hover:bg-gray-100 px-4 py-2 rounded-full text-xs font-mono font-semibold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
-              >
-                Let's Talk
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </Link>
-            </MagneticButton>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex md:hidden items-center">
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="text-gray-300 hover:text-white focus:outline-none p-1.5"
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-xs uppercase tracking-widest font-mono text-neutral-400 hover:text-white transition-colors"
             >
-              <Menu className="h-6 w-6" />
-            </button>
-          </div>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Action Button */}
+        <div className="hidden md:flex items-center gap-4">
+          <MagneticButton strength={0.25}>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-colors text-xs font-semibold uppercase tracking-wider shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+            >
+              <span>Get in Touch</span>
+              <ArrowUpRight size={14} weight="bold" />
+            </a>
+          </MagneticButton>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-neutral-400 hover:text-white transition-colors"
+          aria-label="Toggle navigation"
+        >
+          {mobileMenuOpen ? <X size={20} weight="bold" /> : <List size={20} weight="bold" />}
+        </button>
       </div>
 
       {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-40 md:hidden"
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-3/4 max-w-xs bg-[#090D14] border-l border-white/10 z-50 p-6 flex flex-col justify-between md:hidden"
-            >
-              <div>
-                <div className="flex justify-between items-center mb-8">
-                  <span className="font-mono text-xl font-bold text-white">HB.</span>
-                  <button
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-gray-400 hover:text-white"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
-                <div className="flex flex-col gap-5">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-gray-300 hover:text-white text-sm font-mono uppercase tracking-wider py-1"
-                    >
-                      {link.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <div className="pt-6 border-t border-white/10">
-                <Link
-                  href="#contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-white text-gray-950 px-5 py-3 rounded-full text-xs font-mono font-semibold uppercase tracking-wider"
-                >
-                  Book Discovery Call
-                  <ArrowUpRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-[#080808]/95 backdrop-blur-2xl border-b border-white/[0.08] px-6 py-8 flex flex-col gap-6">
+          <nav className="flex flex-col gap-4">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-sm uppercase tracking-widest font-mono text-neutral-300 hover:text-white transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <a
+            href="#contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white text-black font-semibold text-xs uppercase tracking-wider"
+          >
+            <span>Get in Touch</span>
+            <ArrowUpRight size={14} weight="bold" />
+          </a>
+        </div>
+      )}
     </header>
   );
 }
+export default Navbar;

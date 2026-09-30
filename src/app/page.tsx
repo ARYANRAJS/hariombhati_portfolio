@@ -1,29 +1,16 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Navbar } from '@/components/sections/Navbar';
-import { Hero } from '@/components/sections/Hero';
-import { CaseStudies } from '@/components/sections/CaseStudies';
+import SmoothScroll from '@/components/ui/SmoothScroll';
+import Navbar from '@/components/sections/Navbar';
+import Hero from '@/components/sections/Hero';
+import ResultsTicker from '@/components/sections/ResultsTicker';
+import About from '@/components/sections/About';
 import Footer from '@/components/sections/Footer';
 
-// Dynamic imports for heavy 3D/interactive components (no SSR)
-const ThreeUIBackground = dynamic(
-  () => import('@/components/3d/ThreeUIBackground'),
-  { ssr: false }
-);
-
-const ParticleBackground = dynamic(
-  () => import('@/components/3d/ParticleField'),
-  { ssr: false }
-);
-
-const SkillsMatrix = dynamic(
-  () => import('@/components/sections/SkillsMatrix'),
-  { ssr: false }
-);
-
-const ROASCalculator = dynamic(
-  () => import('@/components/sections/ROASCalculator'),
+// Dynamic imports with ssr: false for GSAP scroll-triggered and heavy interactive components
+const CaseStudies = dynamic(
+  () => import('@/components/sections/CaseStudies'),
   { ssr: false }
 );
 
@@ -32,8 +19,8 @@ const ProcessSection = dynamic(
   { ssr: false }
 );
 
-const Certifications = dynamic(
-  () => import('@/components/sections/Certifications'),
+const SkillsMatrix = dynamic(
+  () => import('@/components/sections/SkillsMatrix'),
   { ssr: false }
 );
 
@@ -44,45 +31,39 @@ const Contact = dynamic(
 
 export default function Home() {
   return (
-    <>
-      {/* ThreeUI Ambient Shader Background */}
-      <ThreeUIBackground />
+    <SmoothScroll>
+      {/* Fixed Subtle Film Grain Texture */}
+      <div className="bg-grain" />
 
-      {/* Global 3D Particle Background */}
-      <ParticleBackground />
-
-      {/* Navigation */}
+      {/* Global Minimalist Navigation */}
       <Navbar />
 
-      {/* Main Content */}
-      <main className="relative z-10">
-        {/* Hero Section */}
+      {/* Main Narrative Sections */}
+      <main className="relative z-10 bg-[#080808]">
+        {/* 1. Immersive 3D Hero */}
         <Hero />
 
-        {/* Subtle section divider */}
-        <div className="section-glow" />
+        {/* 2. Key Proof Point Marquee */}
+        <ResultsTicker />
 
-        {/* Case Studies */}
+        {/* 3. Verified Case Studies (GSAP Horizontal Scroll) */}
         <CaseStudies />
 
-        {/* Skills & Tools */}
-        <SkillsMatrix />
+        {/* 4. Strategic Edge & Attribution Philosophy */}
+        <About />
 
-        {/* Growth Engine / Process */}
+        {/* 5. 4-Step Growth Methodology (GSAP Sticky Stack) */}
         <ProcessSection />
 
-        {/* ROAS Calculator */}
-        <ROASCalculator />
+        {/* 6. Asymmetric Bento Skills & Telemetry Matrix */}
+        <SkillsMatrix />
 
-        {/* Certifications & Education */}
-        <Certifications />
-
-        {/* Contact */}
+        {/* 7. Recruiter & Founder Conversion Channel */}
         <Contact />
       </main>
 
       {/* Footer */}
       <Footer />
-    </>
+    </SmoothScroll>
   );
 }

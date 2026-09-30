@@ -1,141 +1,209 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, MessageCircle, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { MagneticButton } from '../ui/MagneticButton';
+import { EnvelopeSimple, WhatsappLogo, MapPin, DownloadSimple, PaperPlaneTilt } from '@phosphor-icons/react';
 
-export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+export function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    roleType: 'Full-time Growth Role',
+    message: '',
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setTimeout(() => setIsSubmitted(false), 3000);
-    }, 1500);
+    // Simulate instant acknowledgement
+    setSubmitted(true);
   };
 
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Let's Build <span className="gradient-text">Something</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Ready to scale your brand? Drop a message and let's discuss your growth strategy.
-          </p>
-        </div>
+    <section id="contact" className="relative py-28 bg-[#080808] border-t border-white/[0.08] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          
+          {/* Left Column: Direct Inquiries & Contact Channels */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            <div>
+              <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
+                Initiate Conversation
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6">
+                Ready to scale your next growth milestone?
+              </h2>
+              <p className="text-base text-neutral-400 leading-relaxed font-normal mb-10">
+                Currently open for full-time Growth Marketing roles, strategic advisory, or high-impact account audits. Let's discuss your revenue targets.
+              </p>
 
-        <div className="grid lg:grid-cols-5 gap-12 items-start">
-          {/* Form */}
-          <div className="lg:col-span-3 glass-strong rounded-2xl p-8 border border-[#1F2937]">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-400">Name</label>
-                  <input required type="text" className="w-full bg-[#0B0F17] border border-[#1F2937] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#06B6D4] focus:ring-1 focus:ring-[#06B6D4] transition-all" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-400">Email</label>
-                  <input required type="email" className="w-full bg-[#0B0F17] border border-[#1F2937] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#06B6D4] focus:ring-1 focus:ring-[#06B6D4] transition-all" />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-400">Website URL</label>
-                  <input type="url" className="w-full bg-[#0B0F17] border border-[#1F2937] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#06B6D4] focus:ring-1 focus:ring-[#06B6D4] transition-all" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm text-gray-400">Monthly Ad Budget</label>
-                  <select className="w-full bg-[#0B0F17] border border-[#1F2937] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#06B6D4] focus:ring-1 focus:ring-[#06B6D4] transition-all appearance-none">
-                    <option>&lt;₹1L</option>
-                    <option>₹1L-3L</option>
-                    <option>₹3L-5L</option>
-                    <option>₹5L-10L</option>
-                    <option>₹10L+</option>
-                  </select>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm text-gray-400">Message</label>
-                <textarea required rows={4} className="w-full bg-[#0B0F17] border border-[#1F2937] rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#06B6D4] focus:ring-1 focus:ring-[#06B6D4] transition-all resize-none"></textarea>
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
-              >
-                {isSubmitting ? (
-                  <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                ) : isSubmitted ? (
-                  'Message Sent!'
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
+              {/* Direct Reach Out Cards */}
+              <div className="flex flex-col gap-4 mb-10">
+                
+                <a
+                  href="mailto:bhatih038@gmail.com"
+                  className="flex items-center gap-4 p-4 rounded-2xl glass-panel glass-panel-hover"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white">
+                    <EnvelopeSimple size={20} weight="light" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">
+                      Direct Email
+                    </div>
+                    <div className="text-sm font-mono text-white">
+                      bhatih038@gmail.com
+                    </div>
+                  </div>
+                </a>
 
-          {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-6">
-            <a
-              href="https://wa.me/916265966868"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-6 glass rounded-xl border border-emerald-500/30 hover:border-emerald-500/60 hover:bg-emerald-500/5 transition-all group relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-emerald-500/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-              <div className="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center justify-center shrink-0 relative z-10 group-hover:scale-110 transition-transform">
-                <MessageCircle className="w-6 h-6" />
-              </div>
-              <div className="relative z-10">
-                <h4 className="text-white font-medium">Chat on WhatsApp</h4>
-                <p className="text-emerald-400 text-sm">Fastest response</p>
-              </div>
-            </a>
+                <a
+                  href="https://wa.me/916265966868"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 rounded-2xl glass-panel glass-panel-hover"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white">
+                    <WhatsappLogo size={20} weight="light" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">
+                      Direct WhatsApp / Phone
+                    </div>
+                    <div className="text-sm font-mono text-white">
+                      +91 6265966868
+                    </div>
+                  </div>
+                </a>
 
-            <div className="p-6 glass rounded-xl border border-[#1F2937] space-y-6">
-              <a href="mailto:bhatih038@gmail.com" className="flex items-center gap-4 group">
-                <div className="w-10 h-10 bg-[#1F2937] text-gray-400 rounded-lg flex items-center justify-center shrink-0 group-hover:text-cyan-400 transition-colors">
-                  <Mail className="w-5 h-5" />
+                <div className="flex items-center gap-4 p-4 rounded-2xl glass-panel">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white">
+                    <MapPin size={20} weight="light" />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">
+                      Base Location
+                    </div>
+                    <div className="text-sm font-mono text-white">
+                      Indore, MP, India (Remote & Hybrid Ready)
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-500">Email</p>
-                  <p className="text-gray-200 group-hover:text-cyan-400 transition-colors">bhatih038@gmail.com</p>
-                </div>
-              </a>
-              
-              <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 bg-[#1F2937] text-gray-400 rounded-lg flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Phone</p>
-                  <p className="text-gray-200">+91 6265966868</p>
-                </div>
-              </div>
 
-              <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 bg-[#1F2937] text-gray-400 rounded-lg flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Location</p>
-                  <p className="text-gray-200">Indore, MP, India <span className="text-xs text-cyan-500 ml-1">(Available Remote)</span></p>
-                </div>
               </div>
             </div>
+
+            {/* Resume / CV Link */}
+            <div>
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white transition-colors"
+              >
+                <DownloadSimple size={16} />
+                <span>Download Verified Curriculum Vitae (PDF)</span>
+              </a>
+            </div>
           </div>
+
+          {/* Right Column: Clean Interactive Form */}
+          <div className="lg:col-span-7">
+            <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-white/10">
+              {submitted ? (
+                <div className="py-16 text-center">
+                  <div className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center mx-auto mb-6">
+                    <PaperPlaneTilt size={24} weight="bold" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
+                    Inquiry Received
+                  </h3>
+                  <p className="text-sm text-neutral-400 max-w-md mx-auto mb-8 font-normal">
+                    Thank you for reaching out. Hariom will respond to your email within 24 hours with scheduling details.
+                  </p>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="text-xs font-mono uppercase tracking-widest text-white border-b border-white pb-1"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Alex Morgan"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
+                      Work Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="alex@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
+                      Opportunity Type
+                    </label>
+                    <select
+                      value={formData.roleType}
+                      onChange={(e) => setFormData({ ...formData, roleType: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-xl bg-[#111111] border border-white/15 focus:border-white text-white text-sm focus:outline-none transition-colors"
+                    >
+                      <option value="Full-time Growth Role">Full-time Growth Marketing Role</option>
+                      <option value="Account Audit">Paid Traffic Performance Audit</option>
+                      <option value="Contract / Freelance Project">Contract / Advisory Project</option>
+                      <option value="General Inquiry">General Conversation</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
+                      Project or Role Details *
+                    </label>
+                    <textarea
+                      required
+                      rows={4}
+                      placeholder="Tell me about your current ad spend, core KPIs, and immediate growth targets..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
+
+                  <MagneticButton strength={0.2}>
+                    <button
+                      type="submit"
+                      className="w-full py-4 rounded-xl bg-white text-black hover:bg-neutral-200 transition-colors font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 mt-2 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                    >
+                      <span>Submit Inquiry</span>
+                      <PaperPlaneTilt size={16} weight="bold" />
+                    </button>
+                  </MagneticButton>
+                </form>
+              )}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
 }
+export default Contact;

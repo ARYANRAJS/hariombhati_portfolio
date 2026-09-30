@@ -1,113 +1,123 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Server, MessageSquare, Layers, Search, Layout, Settings, Link as LinkIcon, Cpu } from 'lucide-react';
-import { SpotlightCard } from '../ui/SpotlightCard';
+import React from 'react';
+import { 
+  Megaphone, 
+  TerminalWindow, 
+  Browsers, 
+  Sparkle, 
+  TrendUp,
+  Cpu
+} from '@phosphor-icons/react';
 
-const CATEGORIES = ['All', 'Paid Ads', 'Tracking & Data', 'Automation & n8n', 'SEO', 'CRO'];
-
-const TOOLS = [
-  { name: 'Meta Ads', slug: 'meta', category: 'Paid Ads', iconType: 'simple', description: 'Advanced campaign structure & CBO' },
-  { name: 'Google Ads', slug: 'googleads', category: 'Paid Ads', iconType: 'simple', description: 'Search, Display, Performance Max' },
-  { name: 'Funnel Economics', slug: '', category: 'Paid Ads', iconType: 'lucide', icon: Layers, description: 'LTV, CAC, Margin Analysis' },
-  { name: 'GA4', slug: 'googleanalytics', category: 'Tracking & Data', iconType: 'simple', description: 'Event tracking & reporting' },
-  { name: 'GTM', slug: 'googletagmanager', category: 'Tracking & Data', iconType: 'simple', description: 'Custom tags & triggers' },
-  { name: 'Shopify', slug: 'shopify', category: 'Tracking & Data', iconType: 'simple', description: 'Data layer implementation' },
-  { name: 'Stape', slug: '', category: 'Tracking & Data', iconType: 'lucide', icon: Server, description: 'Server-side tracking' },
-  { name: 'n8n', slug: 'n8n', category: 'Automation & n8n', iconType: 'simple', description: 'Workflow automation' },
-  { name: 'HubSpot', slug: 'hubspot', category: 'Automation & n8n', iconType: 'simple', description: 'CRM & marketing automation' },
-  { name: 'AiSensy', slug: '', category: 'Automation & n8n', iconType: 'lucide', icon: MessageSquare, description: 'WhatsApp Business API' },
-  { name: 'Webhooks', slug: '', category: 'Automation & n8n', iconType: 'lucide', icon: LinkIcon, description: 'API integrations' },
-  { name: 'Semrush', slug: 'semrush', category: 'SEO', iconType: 'simple', description: 'Keyword & competitor research' },
-  { name: 'WordPress', slug: 'wordpress', category: 'SEO', iconType: 'simple', description: 'Technical SEO setup' },
-  { name: 'On-page', slug: '', category: 'SEO', iconType: 'lucide', icon: Search, description: 'Content optimization' },
-  { name: 'Landing Pages', slug: '', category: 'CRO', iconType: 'lucide', icon: Layout, description: 'High-converting design' },
-  { name: 'UX Audits', slug: '', category: 'CRO', iconType: 'lucide', icon: Settings, description: 'User experience optimization' },
+const SKILL_GROUPS = [
+  {
+    title: 'Paid Media Channels',
+    description: 'Direct response paid acquisition across high-intent and algorithmic discovery networks.',
+    icon: Megaphone,
+    skills: ['Meta Ads Manager', 'Advantage+ Campaigns', 'Google Search Ads', 'Performance Max', 'YouTube Direct Response', 'TikTok Ads'],
+    highlight: '₹4.1L+ Direct Revenue Scaled',
+    colSpan: 'lg:col-span-7',
+  },
+  {
+    title: 'Attribution & Telemetry',
+    description: 'Eliminating conversion discrepancies and signal decay post-iOS 14.5.',
+    icon: TerminalWindow,
+    skills: ['Google Tag Manager (Server-Side)', 'Google Analytics 4 (GA4)', 'Meta Conversions API (CAPI)', 'Event Deduplication', 'UTM Architecture'],
+    highlight: '95%+ Match Quality',
+    colSpan: 'lg:col-span-5',
+  },
+  {
+    title: 'Funnel & Conversion Architecture',
+    description: 'Landing page friction reduction, basket size growth, and checkout optimization.',
+    icon: Browsers,
+    skills: ['Shopify Liquid & Apps', 'WooCommerce Setup', 'Custom Landing Pages', 'AOV Bundle Strategies', 'Post-Purchase Upsells', 'Heatmap Analysis'],
+    highlight: '38% CPA Reduction',
+    colSpan: 'lg:col-span-5',
+  },
+  {
+    title: 'Creative Strategy & Testing',
+    description: 'Hypothesis-driven creative iteration frameworks built to combat rapid ad fatigue.',
+    icon: Sparkle,
+    skills: ['Hook Rate Optimization', 'UGC Creative Direction', 'Video Split-Testing', 'Dynamic Product Ads (DPA)', 'Offer Matrix Mapping', 'Competitor Ad Auditing'],
+    highlight: '15+ Angles Tested / Mo',
+    colSpan: 'lg:col-span-7',
+  },
 ];
 
-export default function SkillsMatrix() {
-  const [activeTab, setActiveTab] = useState('All');
-
-  const filteredTools = TOOLS.filter(
-    tool => activeTab === 'All' || tool.category === activeTab
-  );
-
+export function SkillsMatrix() {
   return (
-    <section id="skills" className="py-28 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+    <section id="skills" className="relative py-28 bg-[#080808] border-t border-white/[0.08]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-6 mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-cyan-400 mb-4">
-              <Cpu className="w-3.5 h-3.5" />
-              SYSTEM ARCHITECTURE • STACK
+            <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
+              Capabilities
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-              Skills & Growth <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-emerald-300">Stack</span>
+            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+              Growth Stack & Tooling
             </h2>
           </div>
-          <p className="text-gray-400 max-w-md text-sm sm:text-base leading-relaxed">
-            The complete instrument stack deployed to drive acquisition, configure server-side attribution, and automate post-click pipelines.
+          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
+            Validated by Live Commercial Deployments
           </p>
         </div>
 
-        {/* 21st.dev style Filter Tabs */}
-        <div className="flex items-center gap-2 mb-10 overflow-x-auto pb-2 scrollbar-none">
-          {CATEGORIES.map(category => (
-            <button
-              key={category}
-              onClick={() => setActiveTab(category)}
-              className={`px-4 py-2 rounded-full text-xs font-medium tracking-wide transition-all whitespace-nowrap ${
-                activeTab === category
-                  ? 'bg-white text-gray-950 shadow-[0_0_20px_rgba(255,255,255,0.3)] font-semibold'
-                  : 'bg-white/[0.04] text-gray-400 hover:text-white hover:bg-white/[0.08] border border-white/[0.06]'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        {/* Asymmetric Bento Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {SKILL_GROUPS.map((group, idx) => {
+            const Icon = group.icon;
+            return (
+              <div
+                key={group.title}
+                className={`${group.colSpan} glass-panel glass-panel-hover rounded-3xl p-8 sm:p-10 flex flex-col justify-between`}
+              >
+                <div>
+                  {/* Top Bar */}
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.08]">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white">
+                        <Icon size={18} weight="light" />
+                      </div>
+                      <h3 className="text-lg font-bold text-white tracking-tight">
+                        {group.title}
+                      </h3>
+                    </div>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10">
+                      {group.highlight}
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-neutral-400 leading-relaxed mb-8 font-normal">
+                    {group.description}
+                  </p>
+
+                  {/* Skills Pills */}
+                  <div className="flex flex-wrap gap-2.5">
+                    {group.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-neutral-300 hover:border-white/30 hover:bg-white/[0.07] transition-all"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-neutral-500">
+                  <span>Standardized Production Workflow</span>
+                  <span>Domain 0{idx + 1}</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Tools Grid with SpotlightCard */}
-        <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-          <AnimatePresence mode="popLayout">
-            {filteredTools.map(tool => (
-              <motion.div
-                key={tool.name}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <SpotlightCard
-                  spotlightColor="rgba(6, 182, 212, 0.12)"
-                  className="p-5 h-full flex flex-col justify-between group"
-                >
-                  <div className="flex items-center gap-3.5 mb-3">
-                    <div className="h-10 w-10 shrink-0 flex items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08] group-hover:border-cyan-400/40 group-hover:bg-cyan-500/10 transition-all">
-                      {tool.iconType === 'simple' ? (
-                        <img
-                          src={`https://cdn.simpleicons.org/${tool.slug}/06B6D4`}
-                          alt={tool.name}
-                          className="w-5 h-5 transition-transform group-hover:scale-110"
-                        />
-                      ) : tool.icon ? (
-                        <tool.icon className="w-5 h-5 text-cyan-400 transition-transform group-hover:scale-110" />
-                      ) : null}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-white text-sm tracking-tight">{tool.name}</h3>
-                      <span className="text-[10px] font-mono text-cyan-400/90 uppercase">{tool.category}</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-gray-400 leading-relaxed font-sans">{tool.description}</p>
-                </SpotlightCard>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
       </div>
     </section>
   );
 }
+export default SkillsMatrix;
