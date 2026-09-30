@@ -26,14 +26,21 @@ export function Hero() {
           
           {/* Left Column: Personal Intro & CTAs */}
           <div className="lg:col-span-7 flex flex-col z-10">
-            {/* Status Pill with Name */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md mb-6 w-fit">
+            {/* Status Pill with Name and Photo */}
+            <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md mb-6 w-fit">
+              <div className="relative w-6 h-6 rounded-full overflow-hidden border border-white/25">
+                <img
+                  src="/hariom-bhati.jpg"
+                  alt="Hariom Bhati"
+                  className="w-full h-full object-cover object-top grayscale"
+                />
+              </div>
+              <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-200">
+                Hariom Bhati / Open for Full-Time Roles
+              </span>
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-              </span>
-              <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-200">
-                Hariom Bhati / Open for Full-Time Roles
               </span>
             </div>
 
@@ -42,9 +49,9 @@ export function Hero() {
               I turn paid traffic into scalable, profitable revenue.
             </h1>
 
-            {/* Personal Value Prop */}
+            {/* Personal Value Prop from Resume */}
             <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed mb-8 max-w-xl">
-              Hi, I am a Performance Marketer and Growth Specialist. I help D2C e-commerce brands and startups scale profitably through Meta Ads, Google Ads, and server-side tracking.
+              Hi, I am Hariom Bhati — a Digital Marketing Specialist with hands-on experience running Meta Ads & Google Ads for 8+ clients across real estate, education, and healthcare.
             </p>
 
             {/* CTAs */}

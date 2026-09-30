@@ -40,7 +40,7 @@ export function Contact() {
               <div className="flex flex-col gap-4 mb-10">
                 
                 <a
-                  href="mailto:bhatih038@gmail.com"
+                  href="mailto:bhatih143@gmail.com"
                   className="flex items-center gap-4 p-4 rounded-2xl glass-panel glass-panel-hover"
                 >
                   <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white">
@@ -51,7 +51,7 @@ export function Contact() {
                       Personal Email
                     </div>
                     <div className="text-sm font-mono text-white font-semibold">
-                      bhatih038@gmail.com
+                      bhatih143@gmail.com
                     </div>
                   </div>
                 </a>
