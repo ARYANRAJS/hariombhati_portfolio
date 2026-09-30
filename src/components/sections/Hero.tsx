@@ -7,6 +7,7 @@ import { MagneticButton } from '../ui/MagneticButton';
 import { CountUp } from '../ui/CountUp';
 import PortraitBrushReveal from '../ui/PortraitBrushReveal';
 import CircularScrollBadge from '../ui/CircularScrollBadge';
+import { getAssetPath } from '@/lib/paths';
 import { 
   ArrowDown, 
   ArrowUpRight, 
@@ -87,7 +88,7 @@ export function Hero() {
               </MagneticButton>
 
               <a
-                href="/cv.pdf"
+                href={getAssetPath('/cv.pdf')}
                 target="_blank"
                 download="Hariom_Bhati_Resume.pdf"
                 className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white px-4 py-3 transition-colors"

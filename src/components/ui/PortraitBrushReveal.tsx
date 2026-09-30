@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
 import { PaintBrush, Sparkle } from '@phosphor-icons/react';
+import { getAssetPath } from '@/lib/paths';
 
 interface PortraitBrushRevealProps {
   src: string;
@@ -40,7 +41,7 @@ export default function PortraitBrushReveal({
   useEffect(() => {
     const img = new window.Image();
     img.crossOrigin = 'anonymous';
-    img.src = src;
+    img.src = getAssetPath(src);
     img.onload = () => {
       colorImgRef.current = img;
       setImageLoaded(true);

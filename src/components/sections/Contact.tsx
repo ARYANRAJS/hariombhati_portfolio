@@ -15,6 +15,7 @@ import {
   ArrowSquareOut,
   Key,
 } from '@phosphor-icons/react';
+import { getAssetPath } from '@/lib/paths';
 
 // EmailJS Service & Template IDs provided by Hariom Bhati
 const DEFAULT_SERVICE_ID = 'service_q41r5uk';
@@ -185,7 +186,7 @@ export function Contact() {
             {/* Resume Download */}
             <div>
               <a
-                href="/cv.pdf"
+                href={getAssetPath('/cv.pdf')}
                 download="Hariom_Bhati_Resume.pdf"
                 target="_blank"
                 className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full border border-white/20 hover:border-white/50 bg-white/[0.04] text-xs font-mono uppercase tracking-wider text-white hover:bg-white/[0.08] transition-all group"

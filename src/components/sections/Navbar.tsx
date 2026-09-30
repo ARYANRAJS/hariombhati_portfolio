@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { MagneticButton } from '../ui/MagneticButton';
 import { ArrowUpRight, List, X } from '@phosphor-icons/react';
+import { getAssetPath } from '@/lib/paths';
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
@@ -64,8 +65,9 @@ export function Navbar() {
         {/* Action Button */}
         <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           <a
-            href="/cv.pdf"
+            href={getAssetPath('/cv.pdf')}
             target="_blank"
+            download="Hariom_Bhati_Resume.pdf"
             className="text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white px-2 py-1 transition-colors"
           >
             Resume
@@ -108,7 +110,7 @@ export function Navbar() {
           </nav>
           <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
             <a
-              href="/cv.pdf"
+              href={getAssetPath('/cv.pdf')}
               target="_blank"
               download="Hariom_Bhati_Resume.pdf"
               className="text-center py-2.5 rounded-full border border-white/15 text-xs font-mono uppercase tracking-wider text-white"
