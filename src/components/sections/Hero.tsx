@@ -1,67 +1,67 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import { motion } from 'motion/react';
 import { MagneticButton } from '../ui/MagneticButton';
 import { CountUp } from '../ui/CountUp';
-import { ArrowDown, ArrowUpRight, DownloadSimple } from '@phosphor-icons/react';
-
-// Dynamic import for 3D HeroScene (WebGL)
-const HeroScene = dynamic(() => import('../3d/HeroScene'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-24 h-24 rounded-full border border-white/10 border-t-white animate-spin" />
-    </div>
-  ),
-});
+import { 
+  ArrowDown, 
+  ArrowUpRight, 
+  DownloadSimple, 
+  CheckCircle, 
+  Sparkle,
+  TrendUp,
+  MapPin,
+  Certificate
+} from '@phosphor-icons/react';
 
 export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100dvh] flex items-center pt-24 pb-12 overflow-hidden architect-grid"
+      className="relative min-h-[100dvh] flex items-center pt-24 pb-16 overflow-hidden architect-grid"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
+      {/* Ambient background light glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-white/[0.03] rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Personal Intro & CTAs */}
-          <div className="lg:col-span-7 flex flex-col z-10">
-            {/* Status Pill with Name and Photo */}
-            <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md mb-6 w-fit">
-              <div className="relative w-6 h-6 rounded-full overflow-hidden border border-white/25">
-                <img
-                  src="/hariom-bhati.jpg"
-                  alt="Hariom Bhati"
-                  className="w-full h-full object-cover object-top grayscale"
-                />
-              </div>
-              <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-200">
-                Hariom Bhati / Open for Full-Time Roles
-              </span>
+          {/* Left Column: Personal Editorial Narrative */}
+          <div className="lg:col-span-7 flex flex-col">
+            
+            {/* Status Pill */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md mb-6 w-fit">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
               </span>
+              <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-200">
+                Digital Marketing Specialist • Available for Roles
+              </span>
             </div>
 
-            {/* Headline */}
+            {/* Main Personal Headline */}
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-6">
-              I turn paid traffic into scalable, profitable revenue.
+              Hi, I'm Hariom Bhati.
+              <span className="block text-neutral-400 font-normal text-3xl sm:text-5xl lg:text-6xl mt-2">
+                I scale brands with paid ads & data.
+              </span>
             </h1>
 
-            {/* Personal Value Prop from Resume */}
+            {/* Value Proposition from Resume */}
             <p className="text-base sm:text-lg text-neutral-300 font-normal leading-relaxed mb-8 max-w-xl">
-              Hi, I am Hariom Bhati — a Digital Marketing Specialist with hands-on experience running Meta Ads & Google Ads for 8+ clients across real estate, education, and healthcare.
+              Specializing in Meta Ads, Google Ads, and full-funnel conversion tracking (GA4, GTM, CAPI). Running high-performance campaigns for 8+ clients across real estate, education, and healthcare.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 mb-10">
+            <div className="flex flex-wrap items-center gap-4 mb-12">
               <MagneticButton strength={0.3}>
                 <a
                   href="#case-studies"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                 >
-                  <span>Explore My Work</span>
+                  <span>View My Work</span>
                   <ArrowDown size={14} weight="bold" />
                 </a>
               </MagneticButton>
@@ -82,11 +82,11 @@ export function Hero() {
                 className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white px-4 py-3 transition-colors"
               >
                 <DownloadSimple size={15} />
-                <span>Resume (PDF)</span>
+                <span>Download Resume</span>
               </a>
             </div>
 
-            {/* Monospace Metric Strip */}
+            {/* Verified Stats Strip */}
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/[0.08] max-w-lg">
               <div>
                 <div className="text-2xl sm:text-3xl font-mono font-bold text-white">
@@ -108,21 +108,78 @@ export function Hero() {
 
               <div>
                 <div className="text-2xl sm:text-3xl font-mono font-bold text-white">
-                  <CountUp end={500} suffix="+" />
+                  <CountUp end={8} suffix="+" />
                 </div>
                 <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mt-1">
-                  Orders Delivered
+                  Clients Scaled
                 </div>
               </div>
             </div>
+
           </div>
 
-          {/* Right Column: 3D Scene Viewport */}
-          <div className="lg:col-span-5 h-[340px] sm:h-[440px] lg:h-[560px] relative flex items-center justify-center">
-            <div className="absolute inset-0 bg-radial from-white/[0.05] via-transparent to-transparent pointer-events-none rounded-full blur-2xl" />
-            <div className="w-full h-full relative z-10">
-              <HeroScene />
+          {/* Right Column: Hariom's Cinematic Portrait with Floating Live Badges */}
+          <div className="lg:col-span-5 relative flex items-center justify-center">
+            
+            {/* Portrait Frame Card */}
+            <div className="relative w-full max-w-[400px] rounded-3xl overflow-hidden border border-white/20 bg-[#111111] shadow-[0_25px_60px_rgba(0,0,0,0.9)] group">
+              <div className="relative w-full h-[460px] sm:h-[520px] overflow-hidden bg-neutral-900">
+                <Image
+                  src="/hariom-bhati.jpg"
+                  alt="Hariom Bhati - Digital Marketing Specialist"
+                  fill
+                  priority
+                  className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                />
+                
+                {/* Vignette Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-black/20 opacity-80" />
+                
+                {/* Bottom Bar Info */}
+                <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-xs font-mono text-white">
+                    <MapPin size={13} className="text-white" />
+                    <span>Indore, India</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-black text-xs font-bold font-mono uppercase tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                    <span>Open to Roles</span>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            {/* Floating Live Chip 1: ROAS Badge */}
+            <motion.div
+              animate={{ y: [-4, 4, -4] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -top-4 -left-4 sm:-left-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#141414]/90 backdrop-blur-xl border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-20"
+            >
+              <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/10 flex items-center justify-center text-white">
+                <TrendUp size={16} weight="bold" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-white font-mono">7.25x Peak ROAS</div>
+                <div className="text-[10px] font-mono text-neutral-400">Parshwanath & Modamecca</div>
+              </div>
+            </motion.div>
+
+            {/* Floating Live Chip 2: Certified Badge */}
+            <motion.div
+              animate={{ y: [4, -4, 4] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute -bottom-4 -right-4 sm:-right-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#141414]/90 backdrop-blur-xl border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-20"
+            >
+              <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/10 flex items-center justify-center text-white">
+                <Certificate size={16} weight="bold" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-white font-mono">Google & HubSpot</div>
+                <div className="text-[10px] font-mono text-neutral-400">Certified Specialist</div>
+              </div>
+            </motion.div>
+
           </div>
 
         </div>

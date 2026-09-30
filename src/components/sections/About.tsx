@@ -1,13 +1,15 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { 
   Certificate, 
   Briefcase, 
   MapPin, 
   CheckCircle,
-  GraduationCap
+  GraduationCap,
+  ShieldCheck,
+  ChartLineUp,
+  Lightning
 } from '@phosphor-icons/react';
 
 const EXPERIENCES = [
@@ -50,24 +52,28 @@ const CREDENTIALS = [
     title: 'AI-Powered Performance Ads',
     issuer: 'Google Ads Certification',
     period: 'May 2026 – May 2027',
+    type: 'Certification',
     active: true,
   },
   {
     title: 'Digital Marketing Certified',
     issuer: 'HubSpot Academy',
     period: 'Mar 2026 – Apr 2027',
+    type: 'Certification',
     active: true,
   },
   {
     title: 'PGDCA (Computer Applications)',
     issuer: 'Makhanlal Chaturvedi National University',
     period: '2021 – 2022',
+    type: 'Degree',
     active: false,
   },
   {
     title: 'B.Com (Computer Applications)',
     issuer: 'Pragya Sagar Mahavidyalaya',
     period: '2018 – 2021',
+    type: 'Degree',
     active: false,
   },
 ];
@@ -80,64 +86,78 @@ export function About() {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
-            Professional Profile
+            About Me & Career History
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.12] mb-6">
-            Data-backed performance marketing engineered with precision.
+            Bridging technical data architecture with profitable advertising.
           </h2>
           <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal">
-            Digital Marketing Specialist with hands-on experience running Meta Ads and Google Ads campaigns focused on lead generation, CPL optimization, and funnel performance across real estate, education, healthcare, and SaaS verticals.
+            With a formal background in Computer Applications (B.Com & PGDCA), I approach performance marketing with an engineering mindset. I build first-party server tracking, analyze unit economics, and rapidly test creative angles to scale revenue sustainably.
           </p>
         </div>
 
-        {/* 2 Column Main Grid: Portrait + Experience & Credentials */}
+        {/* 2 Column Main Grid: Core Advantages + Work Experience */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Authentic Portrait & Personal Summary */}
-          <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-28">
-            <div className="relative max-w-[400px] w-full mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-white/15 bg-[#111111] shadow-[0_20px_50px_rgba(0,0,0,0.8)] group">
-              {/* Hariom's Real Portrait */}
-              <div className="relative w-full h-[420px] sm:h-[460px] overflow-hidden bg-neutral-900">
-                <Image
-                  src="/hariom-bhati.jpg"
-                  alt="Hariom Bhati - Digital Marketing Specialist"
-                  fill
-                  priority
-                  className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 400px, 420px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent opacity-80" />
-                
-                {/* Floating Location Badge */}
-                <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-xs font-mono text-white">
-                    <MapPin size={14} className="text-white" />
-                    <span>Indore, India</span>
-                  </div>
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-black text-xs font-bold font-mono uppercase tracking-wider">
-                    <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-                    <span>Open to Roles</span>
-                  </div>
+          {/* Left Column: Advantages & Credentials */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+              My Technical Edge
+            </h3>
+
+            <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
+                  <ShieldCheck size={20} weight="light" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white mb-1">
+                    First-Party Server Tracking
+                  </h4>
+                  <p className="text-xs text-neutral-400 leading-relaxed">
+                    I build server-side GTM containers and Meta CAPI pipelines ensuring 95%+ event match quality and zero attribution blindness.
+                  </p>
                 </div>
               </div>
+            </div>
 
-              {/* Bio summary below photo */}
-              <div className="p-6 border-t border-white/[0.08]">
-                <h3 className="text-xl font-bold text-white mb-1">Hariom Bhati</h3>
-                <p className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-4">
-                  Digital Marketing Specialist | Lead Gen & Paid Ads
-                </p>
-                <p className="text-xs text-neutral-300 leading-relaxed font-normal">
-                  Adept at leveraging GA4, Google Tag Manager, and Meta Pixel to deliver verified commercial growth with full-funnel accountability.
-                </p>
+            <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
+                  <ChartLineUp size={20} weight="light" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white mb-1">
+                    Margin-First Scaling
+                  </h4>
+                  <p className="text-xs text-neutral-400 leading-relaxed">
+                    I calculate contribution margins and customer LTV before scaling budget caps, prioritizing real EBITDA over vanity ROAS.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-panel glass-panel-hover rounded-2xl p-6 border border-white/10">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white shrink-0">
+                  <Lightning size={20} weight="light" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white mb-1">
+                    High-Velocity Creative Direction
+                  </h4>
+                  <p className="text-xs text-neutral-400 leading-relaxed">
+                    I test 15+ ad creatives every month across different hooks and angles to consistently defeat ad fatigue.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Certifications Box */}
-            <div className="glass-panel rounded-2xl p-6 border border-white/10">
+            <div className="glass-panel rounded-2xl p-6 border border-white/10 mt-2">
               <div className="flex items-center gap-2 mb-4 text-xs font-mono uppercase tracking-widest text-neutral-400">
                 <Certificate size={16} className="text-white" />
-                <span>Verified Credentials & Education</span>
+                <span>Certifications & Degrees</span>
               </div>
               <div className="flex flex-col gap-3">
                 {CREDENTIALS.map((cred, idx) => (
@@ -169,7 +189,7 @@ export function About() {
               </span>
             </div>
 
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
               {EXPERIENCES.map((exp, idx) => (
                 <div
                   key={idx}
