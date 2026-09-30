@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 import { MagneticButton } from '../ui/MagneticButton';
 import { CountUp } from '../ui/CountUp';
+import ColorReveal from '../ui/ColorReveal';
 import { 
   ArrowDown, 
   ArrowUpRight, 
@@ -21,8 +22,11 @@ export function Hero() {
       id="home"
       className="relative min-h-[100dvh] flex items-center pt-24 pb-16 overflow-hidden architect-grid"
     >
+      {/* ═══ Colorful Cursor Reveal Canvas ═══ */}
+      <ColorReveal />
+
       {/* Ambient background light glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-white/[0.03] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-white/[0.03] rounded-full blur-[120px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -45,7 +49,7 @@ export function Hero() {
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-6">
               Hi, I'm Hariom Bhati.
               <span className="block text-neutral-400 font-normal text-3xl sm:text-5xl lg:text-6xl mt-2">
-                I scale brands with paid ads & data.
+                I scale brands with paid ads &amp; data.
               </span>
             </h1>
 
@@ -161,7 +165,7 @@ export function Hero() {
               </div>
               <div>
                 <div className="text-xs font-bold text-white font-mono">7.25x Peak ROAS</div>
-                <div className="text-[10px] font-mono text-neutral-400">Parshwanath & Modamecca</div>
+                <div className="text-[10px] font-mono text-neutral-400">Parshwanath &amp; Modamecca</div>
               </div>
             </motion.div>
 
@@ -175,7 +179,7 @@ export function Hero() {
                 <Certificate size={16} weight="bold" />
               </div>
               <div>
-                <div className="text-xs font-bold text-white font-mono">Google & HubSpot</div>
+                <div className="text-xs font-bold text-white font-mono">Google &amp; HubSpot</div>
                 <div className="text-[10px] font-mono text-neutral-400">Certified Specialist</div>
               </div>
             </motion.div>
