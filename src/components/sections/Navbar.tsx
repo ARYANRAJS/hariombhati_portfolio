@@ -8,8 +8,7 @@ const NAV_LINKS = [
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#case-studies' },
   { label: 'Playbook', href: '#process' },
-  { label: 'Toolkit', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Skills', href: '#skills' },
 ];
 
 export function Navbar() {
