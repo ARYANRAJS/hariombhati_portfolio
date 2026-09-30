@@ -12,7 +12,8 @@ import {
   GraduationCap,
   ShieldCheck,
   ChartLineUp,
-  Lightning
+  Lightning,
+  ArrowUpRight,
 } from '@phosphor-icons/react';
 
 const InteractiveGlobe3D = dynamic(() => import('../3d/InteractiveGlobe3D'), { ssr: false });
@@ -46,9 +47,12 @@ const EXPERIENCES = [
     period: 'Apr 2025 – Oct 2025',
     status: 'Completed',
     highlights: [
-      'Executed on-page and off-page SEO across multiple websites, including keyword mapping and link outreach.',
-      'Configured GTM conversion tracking events and supported monthly content planning for high-intent queries.',
+      'Executed programmatic on-page and off-page SEO, achieving #1 organic rank on Google for "best school management bihar".',
+      'Configured GTM conversion tracking events and automated monthly inbound lead pipeline.',
     ],
+    proofUrl:
+      'https://www.google.com/search?q=best+school+management+bihar&oq=best+school+management+bihar&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRiPAjIHCAIQIRiPAtIBCDc3NDRqMGo3qAIAsAIA&sourceid=chrome&source=chrome.ob&ie=UTF-8&sei=K_-8aoaPG_aMnesP-5CRwQY',
+    proofLabel: 'Verify #1 Google SERP Ranking Proof',
   },
 ];
 
@@ -237,6 +241,21 @@ export function About() {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Live SERP Proof Link */}
+                    {'proofUrl' in exp && exp.proofUrl && (
+                      <div className="mt-4 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                        <a
+                          href={exp.proofUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 hover:text-emerald-300 underline font-semibold transition-colors"
+                        >
+                          <span>{'proofLabel' in exp ? exp.proofLabel : 'Verify Google Proof'}</span>
+                          <ArrowUpRight size={13} weight="bold" />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </TiltCard3D>
               ))}
