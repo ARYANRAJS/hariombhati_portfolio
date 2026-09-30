@@ -1,7 +1,7 @@
 /**
  * Utility helper to ensure all static assets (PDFs, images loaded via Image constructor)
  * work seamlessly across both root domains (localhost, Vercel) and sub-path domains (GitHub Pages).
- * Detects both build-time NEXT_PUBLIC_BASE_PATH and client-side runtime pathname.
+ * Detects build-time GITHUB_PAGES, NEXT_PUBLIC_BASE_PATH, and client-side runtime pathname.
  */
 export function getAssetPath(path: string): string {
   if (!path) return '';
@@ -16,12 +16,12 @@ export function getAssetPath(path: string): string {
     return path;
   }
 
-  let basePath = '';
-  if (typeof window !== 'undefined' && window.location?.pathname?.startsWith('/hariombhati_portfolio')) {
-    basePath = '/hariombhati_portfolio';
-  } else {
-    basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  }
+  const isGitHubPages =
+    process.env.GITHUB_PAGES === 'true' ||
+    process.env.NEXT_PUBLIC_BASE_PATH === '/hariombhati_portfolio' ||
+    (typeof window !== 'undefined' && window.location?.pathname?.startsWith('/hariombhati_portfolio'));
+
+  const basePath = isGitHubPages ? '/hariombhati_portfolio' : (process.env.NEXT_PUBLIC_BASE_PATH || '');
 
   if (basePath && path.startsWith(basePath)) {
     return path;
