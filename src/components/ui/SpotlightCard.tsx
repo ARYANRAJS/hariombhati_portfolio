@@ -12,7 +12,7 @@ interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
 export function SpotlightCard({
   children,
   className = '',
-  spotlightColor = 'rgba(6, 182, 212, 0.12)',
+  spotlightColor = 'rgba(255, 255, 255, 0.1)',
   spotlightSize = 350,
   ...props
 }: SpotlightCardProps) {
@@ -43,7 +43,7 @@ export function SpotlightCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0c121d]/80 backdrop-blur-xl transition-all duration-300 hover:border-white/[0.18] hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)] ${className}`}
+      className={`relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111111]/80 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:shadow-[0_10px_35px_rgba(0,0,0,0.8)] ${className}`}
       {...props}
     >
       {/* 21st.dev style Cursor Spotlight */}
@@ -55,8 +55,9 @@ export function SpotlightCard({
         }}
       />
       {/* Top subtle highlight border */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
       <div className="relative z-10 h-full">{children}</div>
     </div>
   );
 }
+export default SpotlightCard;

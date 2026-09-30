@@ -1,120 +1,260 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { SpotlightCard } from '../ui/SpotlightCard';
 import { 
-  Megaphone, 
-  TerminalWindow, 
+  HardDrives, 
+  WhatsappLogo, 
+  TreeStructure, 
+  ChartLineUp, 
+  Cpu, 
   Browsers, 
-  Sparkle, 
-  TrendUp,
-  Cpu
+  MagnifyingGlass,
+  Sparkle
 } from '@phosphor-icons/react';
 
-const SKILL_GROUPS = [
+interface Tool {
+  name: string;
+  slug?: string;
+  category: 'Paid Traffic' | 'Server Telemetry' | 'Automation & n8n' | 'SEO & Inbound' | 'Funnels & CRO';
+  icon?: any;
+  proficiency: string;
+  description: string;
+}
+
+const CATEGORIES = [
+  'All',
+  'Paid Traffic',
+  'Server Telemetry',
+  'Automation & n8n',
+  'SEO & Inbound',
+  'Funnels & CRO',
+] as const;
+
+const TOOLS: Tool[] = [
   {
-    title: 'Paid Media Channels',
-    description: 'Direct response paid acquisition across high-intent and algorithmic discovery networks.',
-    icon: Megaphone,
-    skills: ['Meta Ads Manager', 'Advantage+ Campaigns', 'Google Search Ads', 'Performance Max', 'YouTube Direct Response', 'TikTok Ads'],
-    highlight: '₹4.1L+ Direct Revenue Scaled',
-    colSpan: 'lg:col-span-7',
+    name: 'Meta Ads Manager',
+    slug: 'meta',
+    category: 'Paid Traffic',
+    proficiency: 'Advantage+ & CBO',
+    description: 'Scaling DTC campaigns via automated bid strategies, custom lookalikes, and dynamic creative iteration.',
   },
   {
-    title: 'Attribution & Telemetry',
-    description: 'Eliminating conversion discrepancies and signal decay post-iOS 14.5.',
-    icon: TerminalWindow,
-    skills: ['Google Tag Manager (Server-Side)', 'Google Analytics 4 (GA4)', 'Meta Conversions API (CAPI)', 'Event Deduplication', 'UTM Architecture'],
-    highlight: '95%+ Match Quality',
-    colSpan: 'lg:col-span-5',
+    name: 'Google Ads',
+    slug: 'googleads',
+    category: 'Paid Traffic',
+    proficiency: 'PMax & Search',
+    description: 'High-intent search capture, Google Performance Max feed optimization, and YouTube direct response funnels.',
   },
   {
-    title: 'Funnel & Conversion Architecture',
-    description: 'Landing page friction reduction, basket size growth, and checkout optimization.',
-    icon: Browsers,
-    skills: ['Shopify Liquid & Apps', 'WooCommerce Setup', 'Custom Landing Pages', 'AOV Bundle Strategies', 'Post-Purchase Upsells', 'Heatmap Analysis'],
-    highlight: '38% CPA Reduction',
-    colSpan: 'lg:col-span-5',
+    name: 'Google Analytics 4',
+    slug: 'googleanalytics',
+    category: 'Server Telemetry',
+    proficiency: 'Custom Funnels',
+    description: 'Custom event schemas, conversion path exploration reports, and user-level purchase attribution.',
   },
   {
-    title: 'Creative Strategy & Testing',
-    description: 'Hypothesis-driven creative iteration frameworks built to combat rapid ad fatigue.',
+    name: 'Google Tag Manager',
+    slug: 'googletagmanager',
+    category: 'Server Telemetry',
+    proficiency: 'Server-Side GTM',
+    description: 'Container architecture, custom dataLayer variables, consent mode v2, and server-side client containers.',
+  },
+  {
+    name: 'Meta Conversions API',
+    slug: 'meta',
+    category: 'Server Telemetry',
+    proficiency: 'Event Deduplication',
+    description: 'Server-to-server CAPI signal routing with external ID deduplication to bypass browser ad blockers.',
+  },
+  {
+    name: 'Stape.io',
+    category: 'Server Telemetry',
+    icon: HardDrives,
+    proficiency: 'Cloud Server',
+    description: 'First-party custom subdomain hosting for server containers ensuring maximum cookie lifetime and telemetry.',
+  },
+  {
+    name: 'n8n Workflow Automation',
+    slug: 'n8n',
+    category: 'Automation & n8n',
+    proficiency: 'Workflow Automation',
+    description: 'Self-hosted webhook triggers connecting Shopify order events to CRM pipelines and automated ad alerts.',
+  },
+  {
+    name: 'HubSpot CRM',
+    slug: 'hubspot',
+    category: 'Automation & n8n',
+    proficiency: 'Lifecycle Pipelines',
+    description: 'Lead score tracking, automated multi-touch email sequences, and customer journey attribution modeling.',
+  },
+  {
+    name: 'AiSensy WhatsApp API',
+    category: 'Automation & n8n',
+    icon: WhatsappLogo,
+    proficiency: 'Direct Response',
+    description: 'WhatsApp Business API click-to-chat ad funnels, instant cart recovery alerts, and broadcast workflows.',
+  },
+  {
+    name: 'Webhooks & REST APIs',
+    category: 'Automation & n8n',
+    icon: TreeStructure,
+    proficiency: 'Data Pipelines',
+    description: 'Connecting custom frontend checkout endpoints with analytics platforms and fulfillment systems.',
+  },
+  {
+    name: 'Shopify Plus & Liquid',
+    slug: 'shopify',
+    category: 'Funnels & CRO',
+    proficiency: 'Theme & DataLayer',
+    description: 'Custom dataLayer injection, checkout upsells, bundle offer mechanics, and page loading speed optimization.',
+  },
+  {
+    name: 'Semrush',
+    slug: 'semrush',
+    category: 'SEO & Inbound',
+    proficiency: 'Competitive Intel',
+    description: 'Commercial keyword gap analysis, SERP feature domination, and technical backlink profile audits.',
+  },
+  {
+    name: 'WordPress & WooCommerce',
+    slug: 'wordpress',
+    category: 'SEO & Inbound',
+    proficiency: 'Technical SEO',
+    description: 'Structured schema markup, programmatic landing page generation, and Core Web Vitals optimization.',
+  },
+  {
+    name: 'Conversion Rate Optimization',
+    category: 'Funnels & CRO',
+    icon: ChartLineUp,
+    proficiency: 'AOV & Basket Size',
+    description: 'Identifying drop-off bottlenecks through user session heatmaps, post-purchase offers, and friction audits.',
+  },
+  {
+    name: 'Creative Testing Frameworks',
+    category: 'Funnels & CRO',
     icon: Sparkle,
-    skills: ['Hook Rate Optimization', 'UGC Creative Direction', 'Video Split-Testing', 'Dynamic Product Ads (DPA)', 'Offer Matrix Mapping', 'Competitor Ad Auditing'],
-    highlight: '15+ Angles Tested / Mo',
-    colSpan: 'lg:col-span-7',
+    proficiency: 'High Velocity',
+    description: 'Rapid hypothesis validation testing 15+ video hooks and visual angles every month to prevent ad fatigue.',
+  },
+  {
+    name: 'Organic Search Architecture',
+    category: 'SEO & Inbound',
+    icon: MagnifyingGlass,
+    proficiency: 'Rank #1 Domination',
+    description: 'High-intent B2B keyword architecture that generated #1 Google ranking for VidyalayBox at zero ad cost.',
   },
 ];
 
 export function SkillsMatrix() {
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+
+  const filteredTools = TOOLS.filter(
+    (tool) => activeCategory === 'All' || tool.category === activeCategory
+  );
+
   return (
     <section id="skills" className="relative py-28 bg-[#080808] border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-6 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b border-white/[0.08] pb-8 mb-12">
           <div>
             <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-2">
-              Capabilities
+              Capabilities & Instrument Stack
             </div>
             <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
-              Growth Stack & Tooling
+              Tools & Technical Growth Stack
             </h2>
           </div>
-          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500">
-            Validated by Live Commercial Deployments
+          <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 max-w-sm sm:text-right">
+            16 Commercial Instruments / Verified Deployments
           </p>
         </div>
 
-        {/* Asymmetric Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {SKILL_GROUPS.map((group, idx) => {
-            const Icon = group.icon;
+        {/* Category Filter Pills */}
+        <div className="flex items-center gap-2 sm:gap-3 mb-10 overflow-x-auto pb-2 scrollbar-none">
+          {CATEGORIES.map((cat) => {
+            const isSelected = activeCategory === cat;
             return (
-              <div
-                key={group.title}
-                className={`${group.colSpan} glass-panel glass-panel-hover rounded-3xl p-8 sm:p-10 flex flex-col justify-between`}
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 whitespace-nowrap ${
+                  isSelected
+                    ? 'bg-white text-black font-bold shadow-[0_0_20px_rgba(255,255,255,0.25)]'
+                    : 'bg-white/[0.03] text-neutral-400 hover:text-white hover:bg-white/[0.07] border border-white/[0.08]'
+                }`}
               >
-                <div>
-                  {/* Top Bar */}
-                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.08]">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white">
-                        <Icon size={18} weight="light" />
-                      </div>
-                      <h3 className="text-lg font-bold text-white tracking-tight">
-                        {group.title}
-                      </h3>
-                    </div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10">
-                      {group.highlight}
-                    </span>
-                  </div>
-
-                  <p className="text-sm text-neutral-400 leading-relaxed mb-8 font-normal">
-                    {group.description}
-                  </p>
-
-                  {/* Skills Pills */}
-                  <div className="flex flex-wrap gap-2.5">
-                    {group.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3.5 py-1.5 rounded-lg bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-neutral-300 hover:border-white/30 hover:bg-white/[0.07] transition-all"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-neutral-500">
-                  <span>Standardized Production Workflow</span>
-                  <span>Domain 0{idx + 1}</span>
-                </div>
-              </div>
+                {cat}
+              </button>
             );
           })}
         </div>
+
+        {/* Tools Spotlight Grid */}
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <AnimatePresence mode="popLayout">
+            {filteredTools.map((tool) => {
+              const FallbackIcon = tool.icon;
+              return (
+                <motion.div
+                  key={tool.name}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <SpotlightCard className="p-6 h-full flex flex-col justify-between group">
+                    <div>
+                      {/* Top Bar with Icon & Tag */}
+                      <div className="flex items-center justify-between mb-5">
+                        <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/[0.08] transition-all">
+                          {tool.slug ? (
+                            <img
+                              src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
+                              alt={tool.name}
+                              className="w-5 h-5 transition-transform group-hover:scale-110"
+                              loading="lazy"
+                            />
+                          ) : FallbackIcon ? (
+                            <FallbackIcon size={20} weight="light" className="text-white transition-transform group-hover:scale-110" />
+                          ) : (
+                            <Cpu size={20} weight="light" className="text-white" />
+                          )}
+                        </div>
+
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 px-2 py-0.5 rounded bg-white/[0.03] border border-white/[0.06]">
+                          {tool.proficiency}
+                        </span>
+                      </div>
+
+                      {/* Tool Name & Category */}
+                      <h3 className="text-base font-bold text-white tracking-tight mb-1 group-hover:text-white transition-colors">
+                        {tool.name}
+                      </h3>
+                      <div className="text-[10px] font-mono uppercase tracking-widest text-neutral-400 mb-3">
+                        {tool.category}
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-xs text-neutral-400 leading-relaxed font-normal">
+                        {tool.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-6 pt-3 border-t border-white/[0.04] flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-neutral-600">
+                      <span>Production Ready</span>
+                      <span>Verified</span>
+                    </div>
+                  </SpotlightCard>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
 
       </div>
     </section>
