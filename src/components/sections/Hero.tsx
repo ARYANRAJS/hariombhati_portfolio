@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 import { MagneticButton } from '../ui/MagneticButton';
 import { CountUp } from '../ui/CountUp';
-import ColorReveal from '../ui/ColorReveal';
+import PortraitBrushReveal from '../ui/PortraitBrushReveal';
 import { 
   ArrowDown, 
   ArrowUpRight, 
@@ -22,8 +22,6 @@ export function Hero() {
       id="home"
       className="relative min-h-[100dvh] flex items-center pt-24 pb-16 overflow-hidden architect-grid"
     >
-      {/* ═══ Colorful Cursor Reveal Canvas ═══ */}
-      <ColorReveal />
 
       {/* Ambient background light glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-white/[0.03] rounded-full blur-[120px] pointer-events-none z-0" />
@@ -125,31 +123,24 @@ export function Hero() {
           {/* Right Column: Hariom's Cinematic Portrait with Floating Live Badges */}
           <div className="lg:col-span-5 relative flex items-center justify-center">
             
-            {/* Portrait Frame Card */}
-            <div className="relative w-full max-w-[400px] rounded-3xl overflow-hidden border border-white/20 bg-[#111111] shadow-[0_25px_60px_rgba(0,0,0,0.9)] group">
-              <div className="relative w-full h-[460px] sm:h-[520px] overflow-hidden bg-neutral-900">
-                <Image
-                  src="/hariom-bhati.jpg"
-                  alt="Hariom Bhati - Digital Marketing Specialist"
-                  fill
-                  priority
-                  className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 420px"
-                />
-                
-                {/* Vignette Gradients */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-black/20 opacity-80" />
-                
-                {/* Bottom Bar Info */}
-                <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
-                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-xs font-mono text-white">
-                    <MapPin size={13} className="text-white" />
-                    <span>Indore, India</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-black text-xs font-bold font-mono uppercase tracking-wider">
-                    <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-                    <span>Open to Roles</span>
-                  </div>
+            {/* Portrait Frame Card with Interactive Paint Brush Color Reveal */}
+            <div className="relative w-full max-w-[400px] rounded-3xl overflow-hidden border border-white/20 bg-[#111111] shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
+              <PortraitBrushReveal
+                src="/hariom-bhati-color.jpg"
+                alt="Hariom Bhati - Digital Marketing Specialist"
+                className="w-full h-[460px] sm:h-[520px]"
+                priority
+              />
+
+              {/* Bottom Bar Info */}
+              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between z-30 pointer-events-none">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-xs font-mono text-white">
+                  <MapPin size={13} className="text-white" />
+                  <span>Indore, India</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-black text-xs font-bold font-mono uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                  <span>Open to Roles</span>
                 </div>
               </div>
             </div>
