@@ -169,7 +169,7 @@ export function Hero() {
             <motion.div
               animate={{ y: [4, -4, 4] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute -bottom-4 -right-4 sm:-right-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#141414]/90 backdrop-blur-xl border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-20"
+              className="absolute bottom-10 -right-4 sm:-right-8 hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#141414]/95 backdrop-blur-xl border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-20"
             >
               <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/10 flex items-center justify-center text-white">
                 <Certificate size={16} weight="bold" />
