@@ -81,6 +81,7 @@ export function Hero() {
               <a
                 href="/cv.pdf"
                 target="_blank"
+                download="Hariom_Bhati_Resume.pdf"
                 className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white px-4 py-3 transition-colors"
               >
                 <DownloadSimple size={15} />

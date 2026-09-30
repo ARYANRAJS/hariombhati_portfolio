@@ -110,6 +110,7 @@ export function Navbar() {
             <a
               href="/cv.pdf"
               target="_blank"
+              download="Hariom_Bhati_Resume.pdf"
               className="text-center py-2.5 rounded-full border border-white/15 text-xs font-mono uppercase tracking-wider text-white"
             >
               Download Resume
