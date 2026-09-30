@@ -136,7 +136,7 @@ export function Hero() {
             {/* Portrait Frame Card with Interactive Paint Brush Color Reveal */}
             <div className="relative w-full max-w-[400px] rounded-3xl overflow-hidden border border-white/20 bg-[#111111] shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
               <PortraitBrushReveal
-                src="/hariom-bhati-color.jpg"
+                src={getAssetPath('/hariom-bhati-color.jpg')}
                 alt="Hariom Bhati - Digital Marketing Specialist"
                 className="w-full h-[460px] sm:h-[520px]"
                 priority

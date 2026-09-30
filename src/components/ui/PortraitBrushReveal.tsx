@@ -25,7 +25,12 @@ export default function PortraitBrushReveal({
   className = '',
   priority = true,
 }: PortraitBrushRevealProps) {
-  const resolvedSrc = getAssetPath(src);
+  const [resolvedSrc, setResolvedSrc] = useState(() => getAssetPath(src));
+
+  useEffect(() => {
+    setResolvedSrc(getAssetPath(src));
+  }, [src]);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colorImgRef = useRef<HTMLImageElement | null>(null);
