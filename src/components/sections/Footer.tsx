@@ -22,35 +22,18 @@ export function Footer() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Stage 1: Top metadata bar smoothly fades in & slides into place as footer enters
-      if (topBarRef.current) {
-        gsap.fromTo(
-          topBarRef.current,
-          {
-            y: 30,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 92%',
-              end: 'top 72%',
-              scrub: 0.8,
-            },
-          }
-        );
-      }
-
-      // Stage 2: As user continues scrolling, "Bhati" and the 3D diamond emerge smoothly
+      // Pinned Footer Scroll Reveal:
+      // When footer reaches bottom of viewport, it pins in place ("jo footer hai wo rahe").
+      // As user continues scrolling, "Bhati" + 3D Diamond smoothly emerge from underneath.
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top 72%',
-          end: 'bottom 98%',
-          scrub: 0.9,
+          start: 'bottom bottom',
+          end: '+=700',
+          pin: true,
+          pinSpacing: true,
+          scrub: 1,
+          anticipatePin: 1,
         },
       });
 
@@ -58,9 +41,9 @@ export function Footer() {
         tl.fromTo(
           nameRef.current,
           {
-            yPercent: 65,
+            yPercent: 110,
             opacity: 0,
-            scale: 0.96,
+            scale: 0.95,
           },
           {
             yPercent: 0,
@@ -84,7 +67,7 @@ export function Footer() {
             opacity: 1,
             ease: 'power2.out',
           },
-          0.08
+          0.06
         );
       }
     }, footerRef);
@@ -196,7 +179,7 @@ export function Footer() {
       </div>
 
       {/* ── Giant Editorial Typographic Banner: "Bhati" with Smooth Scroll Reveal ── */}
-      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pt-6 sm:pt-8 pb-2 sm:pb-4">
+      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pb-4 sm:pb-8">
         <div className="relative inline-flex items-baseline justify-center tracking-tighter">
           {/* Main Giant Word with Smooth Scrub Rise Animation */}
           <div ref={nameRef} className="will-change-transform inline-block">
