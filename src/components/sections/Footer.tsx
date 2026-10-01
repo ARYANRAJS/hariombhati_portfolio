@@ -44,23 +44,21 @@ export function Footer() {
         );
       }
 
-      // 2. Cobalt Blue Gemstone rises smoothly and locks into position
+      // 2. Cobalt Blue Gemstone scales and illuminates in lockstep on the dot of 'i'
       if (gemRef.current) {
         gsap.fromTo(
           gemRef.current,
           {
-            y: 90,
-            scale: 0.65,
-            opacity: 0.25,
+            scale: 0.55,
+            opacity: 0.3,
           },
           {
-            y: 0,
             scale: 1,
             opacity: 1,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: footerRef.current,
-              start: 'top 85%',
+              start: 'top 88%',
               end: 'bottom bottom',
               scrub: 1.0,
             },
@@ -203,34 +201,37 @@ export function Footer() {
           {/* Main Giant Word with Smooth Scrub Rise Animation */}
           <div ref={nameRef} className="will-change-transform inline-block">
             <span
-              className="font-extrabold tracking-[-0.04em] text-[22vw] sm:text-[21vw] lg:text-[20vw] leading-[0.78] text-transparent bg-clip-text select-none block"
+              aria-label="Bhati"
+              className="font-extrabold tracking-[-0.04em] text-[22vw] sm:text-[21vw] lg:text-[20vw] leading-[0.78] text-transparent bg-clip-text select-none inline-flex items-baseline"
               style={{
                 backgroundImage:
                   'linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(120, 120, 120, 0.16) 40%, rgba(20, 20, 20, 0.08) 100%)',
                 WebkitTextStroke: '1px rgba(255, 255, 255, 0.04)',
               }}
             >
-              Bhati
+              <span>Bhat</span>
+              <span className="relative inline-block">
+                <span>ı</span>
+                {/* ── Interactive 3D WebGL Cobalt Blue Gem Centered Exactly on the Dot of 'i' ── */}
+                <div
+                  ref={gemRef}
+                  className="absolute left-1/2 -translate-x-1/2 top-[16%] sm:top-[18%] -translate-y-1/2 pointer-events-auto flex items-center justify-center will-change-transform z-20"
+                  style={{
+                    filter:
+                      'drop-shadow(0 0 25px rgba(37, 99, 235, 0.85)) drop-shadow(0 0 55px rgba(59, 130, 246, 0.45))',
+                  }}
+                >
+                  {/* Ambient Radial Cobalt Aura */}
+                  <div
+                    className="absolute w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
+                    style={{ animationDuration: '4s' }}
+                  />
+
+                  {/* Interactive 3D WebGL Gemstone */}
+                  <InteractiveGem3D className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
+                </div>
+              </span>
             </span>
-          </div>
-
-          {/* ── Interactive 3D WebGL Cobalt Blue Gem Floating Over the 'i' ── */}
-          <div
-            ref={gemRef}
-            className="absolute right-[0.8%] sm:right-[1.4%] top-[8%] sm:top-[10%] -translate-y-1/2 pointer-events-auto flex items-center justify-center will-change-transform z-20"
-            style={{
-              filter:
-                'drop-shadow(0 0 25px rgba(37, 99, 235, 0.85)) drop-shadow(0 0 55px rgba(59, 130, 246, 0.45))',
-            }}
-          >
-            {/* Ambient Radial Cobalt Aura */}
-            <div
-              className="absolute w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
-              style={{ animationDuration: '4s' }}
-            />
-
-            {/* Interactive 3D WebGL Gemstone */}
-            <InteractiveGem3D className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
           </div>
         </div>
       </div>
