@@ -123,7 +123,7 @@ export function CaseStudies() {
   }, []);
 
   return (
-    <section id="case-studies" ref={containerRef} className="relative bg-[#080808] overflow-hidden">
+    <section id="case-studies" ref={containerRef} className="relative bg-[#080808] overflow-hidden scroll-mt-24">
       {/* Section Header */}
       <div className="pt-24 pb-8 px-6 sm:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/[0.08] pb-6">

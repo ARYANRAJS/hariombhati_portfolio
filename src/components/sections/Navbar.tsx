@@ -28,8 +28,8 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#080808]/85 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
-          : 'bg-transparent border-b border-transparent py-5'
+          ? 'bg-[#080808]/95 backdrop-blur-xl border-b border-white/[0.08] py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
+          : 'bg-[#080808]/85 sm:bg-transparent backdrop-blur-lg sm:backdrop-blur-none border-b border-white/[0.06] sm:border-transparent py-4 sm:py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
