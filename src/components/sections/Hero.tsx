@@ -33,7 +33,7 @@ export function Hero() {
       </div>
 
       {/* Ambient background light glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-white/[0.03] rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-500/[0.04] rounded-full blur-[120px] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -44,8 +44,8 @@ export function Hero() {
             {/* Status Pill */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-md mb-6 w-fit">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
               <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-200">
                 Digital Marketing Specialist • Available for Roles
@@ -70,7 +70,7 @@ export function Hero() {
               <MagneticButton strength={0.3}>
                 <a
                   href="#case-studies"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all font-bold text-xs uppercase tracking-wider shadow-[0_0_30px_rgba(37,99,235,0.3)]"
                 >
                   <span>View My Work</span>
                   <ArrowDown size={14} weight="bold" />
@@ -161,7 +161,7 @@ export function Hero() {
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute -top-4 -left-4 sm:-left-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#141414]/90 backdrop-blur-xl border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-20"
             >
-              <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/10 flex items-center justify-center text-white">
+              <div className="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
                 <TrendUp size={16} weight="bold" />
               </div>
               <div>
@@ -176,7 +176,7 @@ export function Hero() {
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute bottom-10 -right-4 sm:-right-8 hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#141414]/95 backdrop-blur-xl border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-20"
             >
-              <div className="w-8 h-8 rounded-xl bg-white/[0.08] border border-white/10 flex items-center justify-center text-white">
+              <div className="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
                 <Certificate size={16} weight="bold" />
               </div>
               <div>

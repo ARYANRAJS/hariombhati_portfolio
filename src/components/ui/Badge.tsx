@@ -13,7 +13,7 @@ export function Badge({ children, variant = 'default' }: BadgeProps) {
       variantClasses = 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20';
       break;
     case 'emerald':
-      variantClasses = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+      variantClasses = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
       break;
     default:
       variantClasses = 'bg-gray-800 text-gray-300 border-gray-700';

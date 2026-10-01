@@ -113,11 +113,11 @@ export default function InteractiveGlobe3D() {
       const ptVec = new THREE.Vector3(px, py, pz).normalize();
       const distToIndia = ptVec.distanceTo(indiaVec);
 
-      // Color variation: Points near India get a subtle bright emerald tint
+      // Color variation: Points near India get a subtle bright cobalt blue tint
       if (distToIndia < 0.45) {
-        colors[i] = 0.35;
-        colors[i + 1] = 0.95;
-        colors[i + 2] = 0.65;
+        colors[i] = 0.25;
+        colors[i + 1] = 0.6;
+        colors[i + 2] = 1.0;
       } else {
         // Bright crisp white
         colors[i] = 0.95;
@@ -370,7 +370,7 @@ export default function InteractiveGlobe3D() {
       {/* Top Telemetry Header */}
       <div className="absolute top-5 left-5 right-5 flex items-center justify-between pointer-events-none z-10">
         <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-xs font-mono text-white">
-          <GlobeHemisphereWest size={15} className="text-emerald-400 animate-spin" style={{ animationDuration: '14s' }} />
+          <GlobeHemisphereWest size={15} className="text-blue-400 animate-spin" style={{ animationDuration: '14s' }} />
           <span>Interactive Dotted World Globe</span>
         </div>
         <div className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 bg-white/[0.04] px-2.5 py-1 rounded-md border border-white/10">
@@ -383,7 +383,7 @@ export default function InteractiveGlobe3D() {
         <div className="px-3 py-2 rounded-xl bg-black/85 backdrop-blur-md border border-white/10">
           <div className="text-[9px] font-mono uppercase tracking-wider text-neutral-500">World Map</div>
           <div className="text-xs font-mono font-bold text-white flex items-center gap-1.5 mt-0.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
             4,600+ Dots
           </div>
         </div>

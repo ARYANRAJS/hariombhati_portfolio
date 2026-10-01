@@ -127,7 +127,7 @@ ${formData.message}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono uppercase tracking-widest text-neutral-400 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                 Available For Hire
               </div>
               <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6">
@@ -164,18 +164,18 @@ ${formData.message}
                   rel="noopener noreferrer"
                   className="group flex items-center gap-4 p-4 rounded-2xl glass-panel glass-panel-hover transition-all duration-300 border border-white/10 hover:border-white/25"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] group-hover:bg-emerald-500/20 border border-white/10 group-hover:border-emerald-500/40 flex items-center justify-center text-white group-hover:text-emerald-400 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] group-hover:bg-blue-500/20 border border-white/10 group-hover:border-blue-500/40 flex items-center justify-center text-white group-hover:text-blue-400 transition-colors">
                     <WhatsappLogo size={20} weight="light" />
                   </div>
                   <div className="flex-1">
                     <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500">
                       Direct WhatsApp / Call
                     </div>
-                    <div className="text-sm font-mono text-white font-semibold group-hover:text-emerald-400 transition-colors">
+                    <div className="text-sm font-mono text-white font-semibold group-hover:text-blue-400 transition-colors">
                       +91 6265966868
                     </div>
                   </div>
-                  <ArrowSquareOut size={16} className="text-neutral-500 group-hover:text-emerald-400 transition-colors" />
+                  <ArrowSquareOut size={16} className="text-neutral-500 group-hover:text-blue-400 transition-colors" />
                 </a>
 
                 <div className="flex items-center gap-4 p-4 rounded-2xl glass-panel border border-white/10">
@@ -214,7 +214,7 @@ ${formData.message}
             <div className="glass-panel rounded-3xl p-8 sm:p-12 border border-white/10 relative">
               {status === 'success' ? (
                 <div className="py-12 text-center animate-fade-in">
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-6 shadow-[0_0_40px_rgba(16,185,129,0.2)]">
+                  <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center mx-auto mb-6 shadow-[0_0_40px_rgba(37,99,235,0.2)]">
                     <CheckCircle size={32} weight="bold" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
@@ -245,8 +245,8 @@ ${formData.message}
                       <h3 className="text-xl font-bold text-white tracking-tight">
                         Send Me a Direct Message
                       </h3>
-                      <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="text-[10px] font-mono px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                         Direct Delivery
                       </span>
                     </div>
@@ -363,7 +363,7 @@ ${formData.message}
                       <button
                         type="submit"
                         disabled={status === 'sending'}
-                        className="w-full py-4 rounded-xl bg-white text-black hover:bg-neutral-200 transition-all font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 mt-2 shadow-[0_0_30px_rgba(255,255,255,0.2)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                        className="w-full py-4 rounded-xl bg-white text-black hover:bg-neutral-200 transition-all font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 mt-2 shadow-[0_0_30px_rgba(37,99,235,0.25)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                       >
                         {status === 'sending' ? (
                           <>
@@ -382,7 +382,7 @@ ${formData.message}
 
                   <div className="flex items-center justify-between text-[11px] font-mono text-neutral-500 pt-1">
                     <span className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                       Direct Inbox Transmission
                     </span>
                     <span>Average response &lt; 24h</span>

@@ -82,7 +82,7 @@ export function Footer() {
           </span>
           <button
             onClick={scrollToTop}
-            className="w-9 h-9 rounded-full border border-white/10 hover:border-white/30 flex items-center justify-center text-white hover:bg-white/[0.05] transition-all cursor-pointer shrink-0"
+            className="w-9 h-9 rounded-full border border-white/10 hover:border-blue-500/50 flex items-center justify-center text-white hover:bg-white/[0.05] transition-all cursor-pointer shrink-0"
             aria-label="Scroll to top"
           >
             <ArrowUp size={14} weight="bold" />

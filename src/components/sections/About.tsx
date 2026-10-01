@@ -154,7 +154,7 @@ export function About() {
                           href={exp.proofUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 hover:text-emerald-300 underline font-semibold transition-colors"
+                          className="inline-flex items-center gap-2 text-xs font-mono text-blue-400 hover:text-blue-300 underline font-semibold transition-colors"
                         >
                           <span>{'proofLabel' in exp ? exp.proofLabel : 'Verify Google Proof'}</span>
                           <ArrowUpRight size={13} weight="bold" />

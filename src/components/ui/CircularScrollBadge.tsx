@@ -56,7 +56,7 @@ export default function CircularScrollBadge({
       <div className="absolute inset-4 rounded-full bg-white/[0.02] group-hover:bg-white/[0.08] transition-colors duration-500 blur-sm pointer-events-none" />
 
       {/* ── Center Circular Button with Down Arrow ── */}
-      <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#121212]/90 backdrop-blur-md border border-white/15 group-hover:border-white/50 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all duration-300 shadow-[0_8px_25px_rgba(0,0,0,0.6)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.3)]">
+      <div className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#121212]/90 backdrop-blur-md border border-white/15 group-hover:border-blue-500/50 group-hover:bg-white text-white group-hover:text-black flex items-center justify-center transition-all duration-300 shadow-[0_8px_25px_rgba(0,0,0,0.6)] group-hover:shadow-[0_0_25px_rgba(37,99,235,0.4)]">
         <ArrowDown
           size={18}
           weight="bold"

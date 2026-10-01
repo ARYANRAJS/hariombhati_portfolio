@@ -136,7 +136,7 @@ export function SkillsMatrix() {
                     <div>
                       {/* Top Bar with Icon & Tag */}
                       <div className="flex items-center justify-between mb-5">
-                        <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:border-white/30 group-hover:bg-white/[0.08] transition-all">
+                        <div className="w-11 h-11 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-center group-hover:border-blue-500/40 group-hover:bg-blue-500/10 transition-all">
                           {tool.slug ? (
                             <img
                               src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}

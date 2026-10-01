@@ -163,8 +163,8 @@ export function CaseStudies() {
                       <span className="text-sm font-mono uppercase tracking-wider text-white font-bold">
                         {study.client}
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-blue-500/10 border border-blue-500/30 text-blue-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                         {study.creatorBadge}
                       </span>
                     </div>
@@ -223,7 +223,7 @@ export function CaseStudies() {
                     href={study.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black hover:bg-neutral-200 text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)] w-full sm:w-auto shrink-0 cursor-pointer"
+                    className="group inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black hover:bg-neutral-200 text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.2)] w-full sm:w-auto shrink-0 cursor-pointer"
                   >
                     <span>{study.linkLabel}</span>
                     <ArrowUpRight

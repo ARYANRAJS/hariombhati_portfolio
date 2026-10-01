@@ -117,12 +117,12 @@ export function Navbar() {
                 onClick={(e) => handleScrollTo(e, link.href)}
                 className={`relative px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
                   isActive
-                    ? 'text-white bg-white/[0.1] border border-white/15 shadow-[0_0_15px_rgba(255,255,255,0.06)]'
+                    ? 'text-white bg-white/[0.1] border border-white/15 shadow-[0_0_15px_rgba(37,99,235,0.15)]'
                     : 'text-neutral-400 hover:text-white hover:bg-white/[0.05] border border-transparent'
                 }`}
               >
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                 )}
                 <span>{link.label}</span>
               </a>
@@ -144,7 +144,7 @@ export function Navbar() {
             <a
               href="#contact"
               onClick={(e) => handleScrollTo(e, '#contact')}
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,255,255,0.15)] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 transition-all text-xs font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(37,99,235,0.25)] cursor-pointer"
             >
               <span>Hire Me</span>
               <ArrowUpRight size={14} weight="bold" />
@@ -189,7 +189,7 @@ export function Navbar() {
                     >
                       <span>{link.label}</span>
                       {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                       )}
                     </a>
                   );
@@ -208,7 +208,7 @@ export function Navbar() {
                 <a
                   href="#contact"
                   onClick={(e) => handleScrollTo(e, '#contact')}
-                  className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(255,255,255,0.15)] cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(37,99,235,0.25)] cursor-pointer"
                 >
                   <span>Hire Me</span>
                   <ArrowUpRight size={14} weight="bold" />

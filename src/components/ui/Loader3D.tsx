@@ -280,7 +280,7 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
 
         {/* Brand Meta Identifier */}
         <div className="flex items-center gap-2 mb-3">
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-ping" />
           <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-neutral-400">
             Hariom Bhati • Growth Engineer
           </span>
@@ -296,7 +296,7 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
         <div className="w-full h-[2px] bg-white/[0.08] rounded-full overflow-hidden mb-4 relative">
           <div
             ref={barRef}
-            className="h-full bg-white transition-all duration-75 shadow-[0_0_12px_rgba(255,255,255,0.9)]"
+            className="h-full bg-white transition-all duration-75 shadow-[0_0_12px_rgba(37,99,235,0.9)]"
             style={{ width: `${progress}%` }}
           />
         </div>

@@ -12,7 +12,7 @@ interface GlassCardProps {
 export function GlassCard({ children, className = '', glowColor = 'cyan' }: GlassCardProps) {
   const glowClass = glowColor === 'cyan' 
     ? 'hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)]' 
-    : 'hover:border-emerald-500/50 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]';
+    : 'hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(37,99,235,0.3)]';
 
   return (
     <motion.div
