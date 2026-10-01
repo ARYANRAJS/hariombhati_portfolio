@@ -6,12 +6,13 @@ import TiltCard3D from '../ui/TiltCard3D';
 import GsapTextReveal from '../ui/GsapTextReveal';
 import { 
   Cpu, 
+  Database,
 } from '@phosphor-icons/react';
 
 interface Tool {
   name: string;
   slug?: string;
-  category: 'Paid Traffic' | 'Server Telemetry' | 'Automation & n8n' | 'SEO & Inbound' | 'Funnels & CRO';
+  category: 'Paid Traffic' | 'Server Telemetry' | 'Automation & n8n' | 'SEO & Inbound' | 'Funnels & CRO' | 'Web & Backend';
   icon?: any;
   proficiency: string;
   description: string;
@@ -74,6 +75,34 @@ const TOOLS: Tool[] = [
     proficiency: 'Competitive Intel',
     description: 'Commercial keyword gap analysis, SERP feature domination, and technical backlink profile audits.',
   },
+  {
+    name: 'WordPress & WooCommerce',
+    slug: 'wordpress',
+    category: 'Web & Backend',
+    proficiency: 'Custom CMS & Themes',
+    description: 'Building custom WordPress websites, WooCommerce stores, high-converting lead funnels, and Core Web Vitals optimization.',
+  },
+  {
+    name: 'Custom Web Development',
+    slug: 'javascript',
+    category: 'Web & Backend',
+    proficiency: 'HTML, CSS & JS Code',
+    description: 'Engineering bespoke, fast-loading web applications and landing pages with clean semantic code, modern CSS, and JavaScript.',
+  },
+  {
+    name: 'Backend & REST APIs',
+    slug: 'nodedotjs',
+    category: 'Web & Backend',
+    proficiency: 'Server & Endpoints',
+    description: 'Developing custom server endpoints, REST APIs, server-side data processing, and secure client-server integrations.',
+  },
+  {
+    name: 'Webhooks & Databases',
+    icon: Database,
+    category: 'Web & Backend',
+    proficiency: 'Data Pipelines',
+    description: 'Configuring webhook listeners, relational/NoSQL databases, and automated data routing between checkout forms and backend systems.',
+  },
 ];
 
 export function SkillsMatrix() {
@@ -92,7 +121,7 @@ export function SkillsMatrix() {
             </GsapTextReveal>
           </div>
           <p className="text-xs font-mono uppercase tracking-widest text-neutral-500 max-w-sm sm:text-right">
-            8 Core Tools / Verified Deployments
+            12 Core Tools / Verified Deployments
           </p>
         </div>
 
