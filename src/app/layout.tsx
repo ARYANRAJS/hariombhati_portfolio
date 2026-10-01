@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <JsonLd />
       </head>
-      <body className="bg-[#080808] text-[#F9FAFB] font-sans min-h-screen overflow-x-hidden">
+      <body className="bg-[#080808] text-[#F9FAFB] font-sans min-h-screen">
         {/* GSAP Custom Cursor */}
         <CustomCursor />
         {children}

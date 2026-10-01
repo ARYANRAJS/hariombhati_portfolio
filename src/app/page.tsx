@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       {/* 3D Wireframe Loader with GSAP Counter & Split-Curtain Entrance */}
-      <Loader3D onLoadingComplete={() => setLoadingComplete(true)} />
+      {!loadingComplete && <Loader3D onLoadingComplete={() => setLoadingComplete(true)} />}
 
       <SmoothScroll>
         {/* Fixed Subtle Film Grain Texture */}

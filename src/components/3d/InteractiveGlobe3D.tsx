@@ -284,6 +284,7 @@ export default function InteractiveGlobe3D() {
     canvas.addEventListener('pointerdown', onPointerDown);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
 
     // Resize handler
     const onResize = () => {
@@ -341,6 +342,7 @@ export default function InteractiveGlobe3D() {
       canvas.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
       window.removeEventListener('resize', onResize);
       renderer.dispose();
       landGeometry.dispose();
@@ -359,11 +361,11 @@ export default function InteractiveGlobe3D() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[380px] sm:h-[420px] rounded-3xl bg-[#08080a] border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none group"
+      className="relative w-full h-[380px] sm:h-[420px] rounded-3xl bg-[#08080a] border border-white/10 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] select-none group touch-pan-y"
       data-cursor="DRAG GLOBE"
     >
       {/* 3D WebGL Canvas */}
-      <canvas ref={canvasRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+      <canvas ref={canvasRef} className="w-full h-full cursor-grab active:cursor-grabbing touch-pan-y" />
 
       {/* Top Telemetry Header */}
       <div className="absolute top-5 left-5 right-5 flex items-center justify-between pointer-events-none z-10">

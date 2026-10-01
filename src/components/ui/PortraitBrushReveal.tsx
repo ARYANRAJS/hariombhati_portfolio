@@ -283,7 +283,7 @@ export default function PortraitBrushReveal({
       onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className={`relative select-none overflow-hidden cursor-crosshair group ${className}`}
+      className={`relative select-none overflow-hidden cursor-crosshair group touch-pan-y ${className}`}
       data-cursor="PAINT"
     >
       {/* ── Layer 1 (Underneath): Black & White Grayscale Base ── */}

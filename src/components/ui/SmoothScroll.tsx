@@ -24,13 +24,14 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     // 2. Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
-      duration: 1.3,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // exponential ease-out
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
+      syncTouch: false, // Keep mobile touch scrolling completely native, fluid & frictionless
+      touchMultiplier: 1.0,
     });
 
     lenisRef.current = lenis;
@@ -39,8 +40,12 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     // Immediately pin to top (0, 0)
     lenis.scrollTo(0, { immediate: true });
 
-    // Connect Lenis to GSAP ScrollTrigger
+    // Connect Lenis & native window scroll to GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
+    const handleNativeScroll = () => {
+      ScrollTrigger.update();
+    };
+    window.addEventListener('scroll', handleNativeScroll, { passive: true });
 
     const tickerCb = (time: number) => {
       lenis.raf(time * 1000);
@@ -56,6 +61,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('scroll', handleNativeScroll);
       gsap.ticker.remove(tickerCb);
       lenis.destroy();
       lenisRef.current = null;

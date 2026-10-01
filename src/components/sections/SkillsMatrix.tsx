@@ -175,15 +175,15 @@ export function SkillsMatrix() {
           </p>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex items-center gap-2 sm:gap-3 mb-10 overflow-x-auto pb-2 scrollbar-none">
+        {/* Category Filter Pills - Responsive wrap ensures all pills are visible with zero clipping */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-10">
           {CATEGORIES.map((cat) => {
             const isSelected = activeCategory === cat;
             return (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 whitespace-nowrap ${
+                className={`px-3.5 sm:px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-200 cursor-pointer touch-manipulation active:scale-95 ${
                   isSelected
                     ? 'bg-white text-black font-bold shadow-[0_0_20px_rgba(255,255,255,0.25)]'
                     : 'bg-white/[0.03] text-neutral-400 hover:text-white hover:bg-white/[0.07] border border-white/[0.08]'

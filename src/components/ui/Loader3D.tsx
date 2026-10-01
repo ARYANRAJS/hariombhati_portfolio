@@ -27,6 +27,7 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
   const barRef = useRef<HTMLDivElement>(null);
   const curtainTopRef = useRef<HTMLDivElement>(null);
   const curtainBottomRef = useRef<HTMLDivElement>(null);
+  const isExitedRef = useRef(false);
 
   // Three.js 3D Wireframe Scene
   useEffect(() => {
@@ -110,6 +111,7 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
     let clock = new THREE.Clock();
 
     const animate = () => {
+      if (isExitedRef.current) return;
       const elapsed = clock.getElapsedTime();
 
       ringMesh.rotation.x = elapsed * 0.35;
@@ -190,9 +192,18 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
   const handleExit = () => {
     if (isExiting) return;
     setIsExiting(true);
+    isExitedRef.current = true;
+
+    // Immediately disable pointer events on root container so touch/scroll is never blocked
+    if (containerRef.current) {
+      containerRef.current.style.pointerEvents = 'none';
+    }
 
     const tl = gsap.timeline({
       onComplete: () => {
+        if (containerRef.current) {
+          containerRef.current.style.display = 'none';
+        }
         if (onLoadingComplete) onLoadingComplete();
       },
     });
