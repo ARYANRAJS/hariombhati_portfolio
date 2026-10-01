@@ -22,18 +22,14 @@ export function Footer() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Pinned Footer Scroll Reveal:
-      // When footer reaches bottom of viewport, it pins in place ("jo footer hai wo rahe").
-      // As user continues scrolling, "Bhati" + 3D Diamond smoothly emerge from underneath.
+      // 1. Unified Staged Timeline: When user reaches footer, top bar appears (Stage 1).
+      // As user continues scrolling down, "Bhati" rises up from below (Stage 2).
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'bottom bottom',
-          end: '+=700',
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          anticipatePin: 1,
+          start: 'top 78%',
+          end: 'bottom bottom',
+          scrub: 1.2,
         },
       });
 
@@ -41,9 +37,9 @@ export function Footer() {
         tl.fromTo(
           nameRef.current,
           {
-            yPercent: 110,
+            yPercent: 115,
             opacity: 0,
-            scale: 0.95,
+            scale: 0.94,
           },
           {
             yPercent: 0,
@@ -59,7 +55,7 @@ export function Footer() {
         tl.fromTo(
           gemRef.current,
           {
-            scale: 0.2,
+            scale: 0.15,
             opacity: 0,
           },
           {
@@ -67,7 +63,29 @@ export function Footer() {
             opacity: 1,
             ease: 'power2.out',
           },
-          0.06
+          0.12
+        );
+      }
+
+      // 3. Top metadata bar subtle slide up
+      if (topBarRef.current) {
+        gsap.fromTo(
+          topBarRef.current,
+          {
+            y: 35,
+            opacity: 0.5,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: footerRef.current,
+              start: 'top 98%',
+              end: 'top 75%',
+              scrub: 0.8,
+            },
+          }
         );
       }
     }, footerRef);
@@ -98,11 +116,11 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative bg-[#050505] border-t border-white/[0.08] pt-8 sm:pt-10 pb-4 sm:pb-6 overflow-hidden text-neutral-400 select-none"
+      className="relative bg-[#050505] border-t border-white/[0.08] pt-12 sm:pt-16 pb-6 overflow-hidden text-neutral-400 select-none"
     >
       {/* ── Top Bar (Minimalist Editorial Meta & Links) ── */}
       <div ref={topBarRef} className="max-w-7xl mx-auto px-6 sm:px-8 will-change-transform">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 sm:pb-8 border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-12 border-b border-white/[0.06]">
           {/* Left: Brand Identity & Location */}
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <span className="font-mono text-xs tracking-widest uppercase text-white font-semibold">
@@ -179,7 +197,7 @@ export function Footer() {
       </div>
 
       {/* ── Giant Editorial Typographic Banner: "Bhati" with Smooth Scroll Reveal ── */}
-      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pb-4 sm:pb-8">
+      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pt-12 sm:pt-20 pb-4 sm:pb-8 min-h-[42vh] sm:min-h-[50vh]">
         <div className="relative inline-flex items-baseline justify-center tracking-tighter">
           {/* Main Giant Word with Smooth Scrub Rise Animation */}
           <div ref={nameRef} className="will-change-transform inline-block">
@@ -196,35 +214,23 @@ export function Footer() {
               <span className="relative inline-block">
                 <span>ı</span>
                 {/* ── Interactive 3D WebGL Cobalt Blue Gem Centered Exactly on the Dot of 'i' ── */}
-                <div
-                  className="absolute left-1/2 pointer-events-auto flex items-center justify-center z-20"
-                  style={{
-                    top: '0.07em',
-                    transform: 'translate(-50%, -50%)',
-                    width: '0.28em',
-                    height: '0.28em',
-                  }}
-                >
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-[40%] pointer-events-auto flex items-center justify-center z-20">
                   <div
                     ref={gemRef}
-                    className="relative w-full h-full flex items-center justify-center will-change-transform"
+                    className="relative flex items-center justify-center will-change-transform"
                     style={{
                       filter:
-                        'drop-shadow(0 0 12px rgba(37, 99, 235, 0.75)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.4))',
+                        'drop-shadow(0 0 25px rgba(37, 99, 235, 0.85)) drop-shadow(0 0 55px rgba(59, 130, 246, 0.45))',
                     }}
                   >
                     {/* Ambient Radial Cobalt Aura */}
                     <div
-                      className="absolute rounded-full bg-blue-500/25 blur-md pointer-events-none animate-pulse"
-                      style={{
-                        width: '0.42em',
-                        height: '0.42em',
-                        animationDuration: '4s',
-                      }}
+                      className="absolute w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
+                      style={{ animationDuration: '4s' }}
                     />
 
-                    {/* Interactive 3D WebGL Gemstone - Scales 1:1 with font */}
-                    <InteractiveGem3D className="w-full h-full" />
+                    {/* Interactive 3D WebGL Gemstone */}
+                    <InteractiveGem3D className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
                   </div>
                 </div>
               </span>

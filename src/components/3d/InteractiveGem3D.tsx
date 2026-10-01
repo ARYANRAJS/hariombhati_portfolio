@@ -79,14 +79,14 @@ export default function InteractiveGem3D({ className = '' }: InteractiveGem3DPro
     // Top Crown (Cylinder with table facet)
     const crownGeo = new THREE.CylinderGeometry(0.5, 1.05, 0.58, 7);
     const crownMesh = new THREE.Mesh(crownGeo, gemMat);
-    crownMesh.position.y = 0.29 + 0.35;
+    crownMesh.position.y = 0.29;
     gemGroup.add(crownMesh);
 
     // Bottom Pavilion (Inverted Cone tapering to point)
     const pavilionGeo = new THREE.ConeGeometry(1.05, 1.28, 7);
     pavilionGeo.rotateX(Math.PI);
     const pavilionMesh = new THREE.Mesh(pavilionGeo, gemMat);
-    pavilionMesh.position.y = -0.64 + 0.35;
+    pavilionMesh.position.y = -0.64;
     gemGroup.add(pavilionMesh);
 
     // Subtle luminous wireframe edges
@@ -96,11 +96,11 @@ export default function InteractiveGem3D({ className = '' }: InteractiveGem3DPro
       opacity: 0.4,
     });
     const crownEdges = new THREE.LineSegments(new THREE.EdgesGeometry(crownGeo), wireMat);
-    crownEdges.position.y = 0.29 + 0.35;
+    crownEdges.position.y = 0.29;
     gemGroup.add(crownEdges);
 
     const pavilionEdges = new THREE.LineSegments(new THREE.EdgesGeometry(pavilionGeo), wireMat);
-    pavilionEdges.position.y = -0.64 + 0.35;
+    pavilionEdges.position.y = -0.64;
     gemGroup.add(pavilionEdges);
 
     // 4. Sparkling ambient glint stars orbiting the gem
@@ -132,7 +132,7 @@ export default function InteractiveGem3D({ className = '' }: InteractiveGem3DPro
     }
     const starTex = new THREE.CanvasTexture(starCanvas);
     const starMat = new THREE.PointsMaterial({
-      size: 0.14,
+      size: 0.22,
       map: starTex,
       transparent: true,
       blending: THREE.AdditiveBlending,
