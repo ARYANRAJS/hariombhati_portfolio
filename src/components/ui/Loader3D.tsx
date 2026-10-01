@@ -20,7 +20,6 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
   const [progress, setProgress] = useState(0);
   const [logIndex, setLogIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -29,13 +28,9 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
   const curtainTopRef = useRef<HTMLDivElement>(null);
   const curtainBottomRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   // Three.js 3D Wireframe Scene
   useEffect(() => {
-    if (!isMounted || !canvasRef.current) return;
+    if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const scene = new THREE.Scene();
@@ -152,12 +147,10 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
       particleGeo.dispose();
       particleMat.dispose();
     };
-  }, [isMounted]);
+  }, []);
 
   // GSAP Counter & Progress Animation
   useEffect(() => {
-    if (!isMounted) return;
-
     const progressObj = { value: 0 };
 
     const tl = gsap.timeline({
@@ -177,14 +170,22 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
 
     tl.to(progressObj, {
       value: 100,
-      duration: 2.2,
+      duration: 1.6,
       ease: 'power2.inOut',
     });
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleExit();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       tl.kill();
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMounted]);
+  }, []);
 
   const handleExit = () => {
     if (isExiting) return;
@@ -200,7 +201,7 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
     tl.to('.loader-content', {
       opacity: 0,
       scale: 0.95,
-      duration: 0.4,
+      duration: 0.35,
       ease: 'power2.in',
     });
 
@@ -210,7 +211,7 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
         curtainTopRef.current,
         {
           yPercent: -100,
-          duration: 0.75,
+          duration: 0.7,
           ease: 'power4.inOut',
         },
         '-=0.1'
@@ -219,26 +220,30 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
         curtainBottomRef.current,
         {
           yPercent: 100,
-          duration: 0.75,
+          duration: 0.7,
           ease: 'power4.inOut',
         },
         '<'
       );
     }
 
-    // Hide entire container
+    // Completely remove container from layout and mouse events
     if (containerRef.current) {
       tl.set(containerRef.current, { display: 'none' });
     }
   };
 
-  if (!isMounted) return null;
-
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto overflow-hidden select-none"
+      aria-hidden="true"
+      className="loader-curtain-root fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto overflow-hidden select-none bg-[#060606]"
     >
+      {/* SEO & Search Crawler Safeguard: If JavaScript is disabled or for search bots, hide loader immediately */}
+      <noscript>
+        <style dangerouslySetInnerHTML={{ __html: '.loader-curtain-root { display: none !important; }' }} />
+      </noscript>
+
       {/* Top Split Curtain */}
       <div
         ref={curtainTopRef}

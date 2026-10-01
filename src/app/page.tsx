@@ -9,31 +9,11 @@ import ResultsTicker from '@/components/sections/ResultsTicker';
 import About from '@/components/sections/About';
 import Footer from '@/components/sections/Footer';
 
-// Dynamic imports with ssr: false for GSAP scroll-triggered, Three.js 3D and heavy interactive components
-const Loader3D = dynamic(
-  () => import('@/components/ui/Loader3D'),
-  { ssr: false }
-);
-
-const CaseStudies = dynamic(
-  () => import('@/components/sections/CaseStudies'),
-  { ssr: false }
-);
-
-const ProcessSection = dynamic(
-  () => import('@/components/sections/ProcessSection'),
-  { ssr: false }
-);
-
-const SkillsMatrix = dynamic(
-  () => import('@/components/sections/SkillsMatrix'),
-  { ssr: false }
-);
-
-const Contact = dynamic(
-  () => import('@/components/sections/Contact'),
-  { ssr: false }
-);
+import Loader3D from '@/components/ui/Loader3D';
+import CaseStudies from '@/components/sections/CaseStudies';
+import ProcessSection from '@/components/sections/ProcessSection';
+import SkillsMatrix from '@/components/sections/SkillsMatrix';
+import Contact from '@/components/sections/Contact';
 
 export default function Home() {
   const [loadingComplete, setLoadingComplete] = useState(false);
