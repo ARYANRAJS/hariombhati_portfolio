@@ -208,37 +208,37 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
       },
     });
 
-    // Content fade-out and subtle scale up
-    tl.to('.loader-content', {
+    // Content & ambient fade-out
+    tl.to('.loader-content, .loader-ambient', {
       opacity: 0,
       scale: 0.95,
       duration: 0.35,
       ease: 'power2.in',
     });
 
-    // Curtains split open vertically
+    // Horizontal split curtains part from center: top slides UP (-100%), bottom slides DOWN (+100%)
     if (curtainTopRef.current && curtainBottomRef.current) {
       tl.to(
         curtainTopRef.current,
         {
           yPercent: -100,
-          duration: 0.7,
-          ease: 'power4.inOut',
+          duration: 0.85,
+          ease: 'power3.inOut',
         },
-        '-=0.1'
+        '-=0.08'
       );
       tl.to(
         curtainBottomRef.current,
         {
           yPercent: 100,
-          duration: 0.7,
-          ease: 'power4.inOut',
+          duration: 0.85,
+          ease: 'power3.inOut',
         },
         '<'
       );
     }
 
-    // Completely remove container from layout and mouse events
+    // Completely remove container from layout once curtains have fully cleared screen
     if (containerRef.current) {
       tl.set(containerRef.current, { display: 'none' });
     }
@@ -248,30 +248,30 @@ export default function Loader3D({ onLoadingComplete }: Loader3DProps) {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="loader-curtain-root fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto overflow-hidden select-none bg-[#060606]"
+      className="loader-curtain-root fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto overflow-hidden select-none bg-transparent"
     >
       {/* SEO & Search Crawler Safeguard: If JavaScript is disabled or for search bots, hide loader immediately */}
       <noscript>
         <style dangerouslySetInnerHTML={{ __html: '.loader-curtain-root { display: none !important; }' }} />
       </noscript>
 
-      {/* Top Split Curtain */}
+      {/* Top Split Curtain - Slides UP from center line */}
       <div
         ref={curtainTopRef}
-        className="absolute top-0 left-0 w-full h-1/2 bg-[#060606] border-b border-white/[0.08]"
+        className="absolute top-0 left-0 w-full h-1/2 bg-[#060606] border-b border-white/[0.12] z-10 will-change-transform shadow-[0_12px_35px_rgba(0,0,0,0.9)]"
       />
 
-      {/* Bottom Split Curtain */}
+      {/* Bottom Split Curtain - Slides DOWN from center line */}
       <div
         ref={curtainBottomRef}
-        className="absolute bottom-0 left-0 w-full h-1/2 bg-[#060606] border-t border-white/[0.08]"
+        className="absolute bottom-0 left-0 w-full h-1/2 bg-[#060606] border-t border-white/[0.12] z-10 will-change-transform shadow-[0_-12px_35px_rgba(0,0,0,0.9)]"
       />
 
-      {/* Subtle background ambient grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
+      {/* Subtle background ambient grid (fades out with loader-content) */}
+      <div className="loader-ambient absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none z-10" />
 
       {/* Loader Content */}
-      <div className="loader-content relative z-10 flex flex-col items-center justify-center px-6 max-w-md w-full text-center">
+      <div className="loader-content relative z-20 flex flex-col items-center justify-center px-6 max-w-md w-full text-center">
         {/* 3D Wireframe Canvas */}
         <div className="relative w-[220px] h-[220px] mb-4 flex items-center justify-center">
           <canvas ref={canvasRef} className="w-full h-full" />
