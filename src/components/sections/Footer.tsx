@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUp, ArrowUpRight } from '@phosphor-icons/react';
 import { getAssetPath } from '@/lib/paths';
+
+const InteractiveGem3D = dynamic(() => import('../3d/InteractiveGem3D'), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -211,10 +214,10 @@ export function Footer() {
             </span>
           </div>
 
-          {/* ── Glowing 3D Cobalt Blue Gem Floating Over the 'i' ── */}
+          {/* ── Interactive 3D WebGL Cobalt Blue Gem Floating Over the 'i' ── */}
           <div
             ref={gemRef}
-            className="absolute right-[1.2%] sm:right-[1.8%] top-[12%] sm:top-[14%] -translate-y-1/2 pointer-events-none flex items-center justify-center will-change-transform"
+            className="absolute right-[0.8%] sm:right-[1.4%] top-[8%] sm:top-[10%] -translate-y-1/2 pointer-events-auto flex items-center justify-center will-change-transform z-20"
             style={{
               filter:
                 'drop-shadow(0 0 25px rgba(37, 99, 235, 0.85)) drop-shadow(0 0 55px rgba(59, 130, 246, 0.45))',
@@ -222,52 +225,12 @@ export function Footer() {
           >
             {/* Ambient Radial Cobalt Aura */}
             <div
-              className="absolute w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
+              className="absolute w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
               style={{ animationDuration: '4s' }}
             />
 
-            {/* Faceted 3D Crystal Gemstone SVG (Pure Cobalt Blue Palette) */}
-            <svg
-              viewBox="0 0 100 100"
-              className="w-7 h-7 sm:w-11 sm:h-11 md:w-14 md:h-14 lg:w-16 lg:h-16 transform -rotate-12 hover:rotate-0 transition-transform duration-500"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Deep navy back facet shadow */}
-              <polygon points="50,6 88,34 76,86 24,86 12,34" fill="#0f172a" />
-
-              {/* Main Cut Facets */}
-              {/* Top Crown facet (ice blue specular highlight) */}
-              <polygon points="50,6 68,26 32,26" fill="#bfdbfe" fillOpacity="0.95" />
-
-              {/* Top-right facet */}
-              <polygon points="50,6 88,34 68,26" fill="#93c5fd" fillOpacity="0.9" />
-
-              {/* Top-left facet */}
-              <polygon points="50,6 32,26 12,34" fill="#60a5fa" fillOpacity="0.88" />
-
-              {/* Center table facet (pure radiant cobalt blue) */}
-              <polygon points="32,26 68,26 72,58 28,58" fill="#2563eb" fillOpacity="0.98" />
-
-              {/* Upper right side */}
-              <polygon points="68,26 88,34 78,58 72,58" fill="#1d4ed8" />
-
-              {/* Upper left side */}
-              <polygon points="32,26 28,58 22,58 12,34" fill="#3b82f6" fillOpacity="0.85" />
-
-              {/* Lower center pavilion */}
-              <polygon points="28,58 72,58 64,86 36,86" fill="#1e40af" />
-
-              {/* Lower right facet */}
-              <polygon points="72,58 78,58 76,86 64,86" fill="#1e3a8a" />
-
-              {/* Lower left facet */}
-              <polygon points="28,58 36,86 24,86 22,58" fill="#1d4ed8" />
-
-              {/* Specular White Sparkle Glint */}
-              <polygon points="46,14 54,14 50,8" fill="#ffffff" fillOpacity="0.95" />
-              <circle cx="50" cy="26" r="2.5" fill="#ffffff" fillOpacity="0.95" />
-            </svg>
+            {/* Interactive 3D WebGL Gemstone */}
+            <InteractiveGem3D className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
           </div>
         </div>
       </div>
