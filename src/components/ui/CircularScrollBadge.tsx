@@ -17,7 +17,7 @@ export default function CircularScrollBadge({
     if (typeof window !== 'undefined') {
       const lenis = (window as any).lenis;
       if (lenis) {
-        lenis.scrollTo(`#${targetId}`, { duration: 1.4 });
+        lenis.scrollTo(`#${targetId}`, { offset: -80, duration: 1.4 });
       } else {
         const target = document.getElementById(targetId);
         target?.scrollIntoView({ behavior: 'smooth' });
