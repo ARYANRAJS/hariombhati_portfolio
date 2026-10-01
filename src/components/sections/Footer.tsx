@@ -22,47 +22,48 @@ export function Footer() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Giant "Bhati" name smooth entrance as user scrolls into footer
+      // 1. Unified Staged Timeline: When user reaches footer, top bar appears (Stage 1).
+      // As user continues scrolling down, "Bhati" rises up from below (Stage 2).
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: 'top 78%',
+          end: 'bottom bottom',
+          scrub: 1.2,
+        },
+      });
+
       if (nameRef.current) {
-        gsap.fromTo(
+        tl.fromTo(
           nameRef.current,
           {
-            y: 120,
-            opacity: 0.35,
+            yPercent: 115,
+            opacity: 0,
+            scale: 0.94,
           },
           {
-            y: 0,
+            yPercent: 0,
             opacity: 1,
+            scale: 1,
             ease: 'power2.out',
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 92%',
-              end: 'bottom bottom',
-              scrub: 1.2,
-            },
-          }
+          },
+          0
         );
       }
 
-      // 2. Cobalt Blue Gemstone scales and illuminates in lockstep on the dot of 'i'
       if (gemRef.current) {
-        gsap.fromTo(
+        tl.fromTo(
           gemRef.current,
           {
-            scale: 0.55,
-            opacity: 0.3,
+            scale: 0.15,
+            opacity: 0,
           },
           {
             scale: 1,
             opacity: 1,
             ease: 'power2.out',
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 88%',
-              end: 'bottom bottom',
-              scrub: 1.0,
-            },
-          }
+          },
+          0.12
         );
       }
 
@@ -196,7 +197,7 @@ export function Footer() {
       </div>
 
       {/* ── Giant Editorial Typographic Banner: "Bhati" with Smooth Scroll Reveal ── */}
-      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pt-8 sm:pt-14 pb-0">
+      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pt-12 sm:pt-20 pb-4 sm:pb-8 min-h-[42vh] sm:min-h-[50vh]">
         <div className="relative inline-flex items-baseline justify-center tracking-tighter">
           {/* Main Giant Word with Smooth Scrub Rise Animation */}
           <div ref={nameRef} className="will-change-transform inline-block">
