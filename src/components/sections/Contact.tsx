@@ -24,11 +24,12 @@ const PUBLIC_KEY = 'Oe3dtBvOH1vud1uDV';
 export function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [lastSent, setLastSent] = useState<{ name: string; email: string; roleType: string } | null>(null);
+  const [lastSent, setLastSent] = useState<{ name: string; email: string; phone: string; roleType: string } | null>(null);
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     roleType: 'Full-time Growth Marketing Role',
     message: '',
   });
@@ -44,16 +45,38 @@ export function Contact() {
     setStatus('sending');
 
     try {
+      // Build a comprehensive, formatted inquiry dossier in the message parameter.
+      // This ensures 100% of lead data (Phone, Email, Reason, Name, Message)
+      // appears in Hariom's Gmail even if the EmailJS template only outputs {{message}}.
+      const enrichedMessage = `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📩 NEW INQUIRY DOSSIER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 SENDER NAME     : ${formData.name}
+📞 PHONE / WHATSAPP: ${formData.phone}
+📧 EMAIL ADDRESS   : ${formData.email}
+🎯 REASON / ROLE   : ${formData.roleType}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💬 CLIENT MESSAGE:
+${formData.message}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`.trim();
+
       const templateParams = {
         from_name: formData.name,
         name: formData.name,
         from_email: formData.email,
         email: formData.email,
         reply_to: formData.email,
+        phone: formData.phone,
+        phone_number: formData.phone,
+        mobile: formData.phone,
+        contact_number: formData.phone,
         role_type: formData.roleType,
         reason: formData.roleType,
-        subject: `Portfolio Inquiry: ${formData.roleType} from ${formData.name}`,
-        message: formData.message,
+        subject: `[Portfolio Inquiry] ${formData.roleType} from ${formData.name}`,
+        message: enrichedMessage,
+        raw_message: formData.message,
         to_name: 'Hariom Bhati',
       };
 
@@ -63,12 +86,14 @@ export function Contact() {
         setLastSent({
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           roleType: formData.roleType,
         });
         setStatus('success');
         setFormData({
           name: '',
           email: '',
+          phone: '',
           roleType: 'Full-time Growth Marketing Role',
           message: '',
         });
@@ -87,7 +112,7 @@ export function Contact() {
   const mailtoFallback = `mailto:bhatih143@gmail.com?subject=${encodeURIComponent(
     `[Portfolio] ${formData.roleType} - ${formData.name || 'New Inquiry'}`
   )}&body=${encodeURIComponent(
-    `Name: ${formData.name}\nEmail: ${formData.email}\nRole / Inquiry: ${formData.roleType}\n\nMessage:\n${formData.message}`
+    `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nRole / Inquiry: ${formData.roleType}\n\nMessage:\n${formData.message}`
   )}`;
 
   return (
@@ -197,7 +222,8 @@ export function Contact() {
                   </h3>
                   <p className="text-sm text-neutral-300 max-w-md mx-auto mb-6 font-normal leading-relaxed">
                     Thank you, <span className="text-white font-semibold">{lastSent?.name}</span>. Your inquiry regarding{' '}
-                    <span className="text-white font-mono text-xs">{lastSent?.roleType}</span> has been dispatched directly to Hariom's primary inbox (<span className="text-white font-mono text-xs">bhatih143@gmail.com</span>).
+                    <span className="text-white font-mono text-xs">{lastSent?.roleType}</span> has been dispatched directly to Hariom's primary inbox (<span className="text-white font-mono text-xs">bhatih143@gmail.com</span>). Hariom will connect with you via{' '}
+                    <span className="text-white font-mono text-xs">{lastSent?.phone}</span> or <span className="text-white font-mono text-xs">{lastSent?.email}</span>.
                   </p>
                   <p className="text-xs text-neutral-400 mb-8">
                     Hariom typically responds within 24 hours. A copy has been logged.
@@ -268,19 +294,36 @@ export function Contact() {
                     />
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
-                      Your Work Email *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="alex@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      disabled={status === 'sending'}
-                      className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors disabled:opacity-50"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
+                        Your Work Email *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="alex@company.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        disabled={status === 'sending'}
+                        className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors disabled:opacity-50"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono uppercase tracking-widest text-neutral-400 mb-2">
+                        Phone / WhatsApp *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="+91 98765 43210"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        disabled={status === 'sending'}
+                        className="w-full px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/15 focus:border-white text-white text-sm placeholder:text-neutral-600 focus:outline-none transition-colors disabled:opacity-50"
+                      />
+                    </div>
                   </div>
 
                   <div>
