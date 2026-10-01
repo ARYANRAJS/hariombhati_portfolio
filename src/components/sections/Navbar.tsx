@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { label: 'Projects', href: '#case-studies' },
   { label: 'Playbook', href: '#process' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Simulator', href: '#simulator' },
 ];
 
 export function Navbar() {

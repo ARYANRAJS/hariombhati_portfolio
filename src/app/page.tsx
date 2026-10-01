@@ -30,11 +30,6 @@ const SkillsMatrix = dynamic(
   { ssr: false }
 );
 
-const GrowthSimulator = dynamic(
-  () => import('@/components/sections/GrowthSimulator'),
-  { ssr: false }
-);
-
 const Contact = dynamic(
   () => import('@/components/sections/Contact'),
   { ssr: false }
@@ -75,10 +70,7 @@ export default function Home() {
           {/* 6. Asymmetric Bento Skills & Telemetry Matrix */}
           <SkillsMatrix />
 
-          {/* 7. Interactive Growth & ROAS Revenue Simulator */}
-          <GrowthSimulator />
-
-          {/* 8. Recruiter & Founder Conversion Channel */}
+          {/* 7. Recruiter & Founder Conversion Channel */}
           <Contact />
         </main>
 
