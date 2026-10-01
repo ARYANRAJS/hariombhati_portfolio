@@ -38,7 +38,7 @@ const CASE_STUDIES: CaseStudy[] = [
     roas: '7.25x',
     revenue: '₹1.80L+',
     metricLabel: '38% CPA Reduction',
-    whatIDid: 'Built and configured the Modamecca e-commerce storefront, restructured the ad account with Meta Advantage+ Shopping, segmented top-of-funnel audiences with 1% behavioral lookalikes, and tested 15 high-converting video angles.',
+    whatIDid: 'Built the Modamecca storefront, restructured Meta Advantage+ campaigns with behavioral lookalikes, and tested 15+ high-converting video angles.',
     tags: ['Store Created by Hariom', 'Meta Advantage+', 'Dynamic Catalog', 'Creative Strategy'],
   },
   {
@@ -53,7 +53,7 @@ const CASE_STUDIES: CaseStudy[] = [
     roas: '5.27x',
     revenue: '220+ Orders',
     metricLabel: 'Zero Ad Fatigue in 90 Days',
-    whatIDid: 'Designed and developed the Parshwanath Mart online shopping experience from scratch, then deployed click-to-WhatsApp ad funnels for immediate friction-free checkout, combined with high-AOV bundle offer architecture.',
+    whatIDid: 'Designed Parshwanath Mart from scratch, deployed click-to-WhatsApp ad funnels for friction-free checkout with high-AOV bundle offers.',
     tags: ['Store Created by Hariom', 'WhatsApp Funnels', 'Meta Ads', 'AOV Optimization'],
   },
   {
@@ -68,7 +68,7 @@ const CASE_STUDIES: CaseStudy[] = [
     roas: 'Infinite',
     revenue: '#1 Rank',
     metricLabel: 'Zero Paid Ad Spend',
-    whatIDid: 'Targeted high-intent commercial keywords ("best school management bihar"), engineered programmatic landing pages, optimized technical on-page schema, and secured the undisputed #1 organic rank on Google SERP.',
+    whatIDid: 'Engineered programmatic SEO landing pages and technical schema to secure undisputed #1 organic rank on Google SERP at zero ad cost.',
     tags: ['Google Search Proof', 'Programmatic SEO', 'B2B Funnels', 'Technical SEO'],
   },
   {
@@ -83,7 +83,7 @@ const CASE_STUDIES: CaseStudy[] = [
     roas: '4.80x',
     revenue: 'Scalable D2C',
     metricLabel: '100% Attribution Accuracy',
-    whatIDid: 'Architected end-to-end performance marketing funnels for KGN dropshipping operations, integrated Server-Side Google Tag Manager and Meta Conversions API for pristine event deduplication, driving sustained ROAS at scale.',
+    whatIDid: 'Integrated Server-Side GTM and Meta CAPI for pristine event deduplication, driving sustained ROAS at scale for dropshipping operations.',
     tags: ['Dropshipping Store', 'Server-Side GTM', 'Meta CAPI', 'Attribution Modeling'],
   },
 ];

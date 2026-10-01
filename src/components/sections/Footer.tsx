@@ -60,13 +60,6 @@ export function Footer() {
             Philosophy
           </a>
           <a
-            href="#process"
-            onClick={(e) => handleNavClick(e, 'process')}
-            className="hover:text-white transition-colors py-1 px-1 cursor-pointer"
-          >
-            Process
-          </a>
-          <a
             href="#skills"
             onClick={(e) => handleNavClick(e, 'skills')}
             className="hover:text-white transition-colors py-1 px-1 cursor-pointer"

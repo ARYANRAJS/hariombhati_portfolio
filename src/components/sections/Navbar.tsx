@@ -9,7 +9,6 @@ import { getAssetPath } from '@/lib/paths';
 const NAV_LINKS = [
   { label: 'About', href: '#about', id: 'about' },
   { label: 'Projects', href: '#case-studies', id: 'case-studies' },
-  { label: 'Playbook', href: '#process', id: 'process' },
   { label: 'Skills', href: '#skills', id: 'skills' },
 ];
 
@@ -24,7 +23,7 @@ export function Navbar() {
 
       // Detect active section based on scroll position
       const scrollPos = window.scrollY + 140;
-      const sectionIds = ['contact', 'skills', 'process', 'case-studies', 'about'];
+      const sectionIds = ['contact', 'skills', 'case-studies', 'about'];
       
       for (const id of sectionIds) {
         const el = document.getElementById(id);
