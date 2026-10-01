@@ -22,14 +22,35 @@ export function Footer() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Unified Staged Timeline: When user reaches footer, top bar appears (Stage 1).
-      // As user continues scrolling down, "Bhati" rises up from below (Stage 2).
+      // Stage 1: Top metadata bar smoothly fades in & slides into place as footer enters
+      if (topBarRef.current) {
+        gsap.fromTo(
+          topBarRef.current,
+          {
+            y: 30,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: footerRef.current,
+              start: 'top 92%',
+              end: 'top 72%',
+              scrub: 0.8,
+            },
+          }
+        );
+      }
+
+      // Stage 2: As user continues scrolling, "Bhati" and the 3D diamond emerge smoothly
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top 78%',
-          end: 'bottom bottom',
-          scrub: 1.2,
+          start: 'top 72%',
+          end: 'bottom 98%',
+          scrub: 0.9,
         },
       });
 
@@ -37,9 +58,9 @@ export function Footer() {
         tl.fromTo(
           nameRef.current,
           {
-            yPercent: 115,
+            yPercent: 65,
             opacity: 0,
-            scale: 0.94,
+            scale: 0.96,
           },
           {
             yPercent: 0,
@@ -55,7 +76,7 @@ export function Footer() {
         tl.fromTo(
           gemRef.current,
           {
-            scale: 0.15,
+            scale: 0.2,
             opacity: 0,
           },
           {
@@ -63,29 +84,7 @@ export function Footer() {
             opacity: 1,
             ease: 'power2.out',
           },
-          0.12
-        );
-      }
-
-      // 3. Top metadata bar subtle slide up
-      if (topBarRef.current) {
-        gsap.fromTo(
-          topBarRef.current,
-          {
-            y: 35,
-            opacity: 0.5,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 98%',
-              end: 'top 75%',
-              scrub: 0.8,
-            },
-          }
+          0.08
         );
       }
     }, footerRef);
@@ -116,11 +115,11 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative bg-[#050505] border-t border-white/[0.08] pt-12 sm:pt-16 pb-6 overflow-hidden text-neutral-400 select-none"
+      className="relative bg-[#050505] border-t border-white/[0.08] pt-8 sm:pt-10 pb-4 sm:pb-6 overflow-hidden text-neutral-400 select-none"
     >
       {/* ── Top Bar (Minimalist Editorial Meta & Links) ── */}
       <div ref={topBarRef} className="max-w-7xl mx-auto px-6 sm:px-8 will-change-transform">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-12 border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 sm:pb-8 border-b border-white/[0.06]">
           {/* Left: Brand Identity & Location */}
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <span className="font-mono text-xs tracking-widest uppercase text-white font-semibold">
@@ -197,7 +196,7 @@ export function Footer() {
       </div>
 
       {/* ── Giant Editorial Typographic Banner: "Bhati" with Smooth Scroll Reveal ── */}
-      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pt-12 sm:pt-20 pb-4 sm:pb-8 min-h-[42vh] sm:min-h-[50vh]">
+      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pt-6 sm:pt-8 pb-2 sm:pb-4">
         <div className="relative inline-flex items-baseline justify-center tracking-tighter">
           {/* Main Giant Word with Smooth Scrub Rise Animation */}
           <div ref={nameRef} className="will-change-transform inline-block">
@@ -214,23 +213,35 @@ export function Footer() {
               <span className="relative inline-block">
                 <span>ı</span>
                 {/* ── Interactive 3D WebGL Cobalt Blue Gem Centered Exactly on the Dot of 'i' ── */}
-                <div className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-[40%] pointer-events-auto flex items-center justify-center z-20">
+                <div
+                  className="absolute left-1/2 pointer-events-auto flex items-center justify-center z-20"
+                  style={{
+                    top: '0.07em',
+                    transform: 'translate(-50%, -50%)',
+                    width: '0.28em',
+                    height: '0.28em',
+                  }}
+                >
                   <div
                     ref={gemRef}
-                    className="relative flex items-center justify-center will-change-transform"
+                    className="relative w-full h-full flex items-center justify-center will-change-transform"
                     style={{
                       filter:
-                        'drop-shadow(0 0 25px rgba(37, 99, 235, 0.85)) drop-shadow(0 0 55px rgba(59, 130, 246, 0.45))',
+                        'drop-shadow(0 0 12px rgba(37, 99, 235, 0.75)) drop-shadow(0 0 25px rgba(59, 130, 246, 0.4))',
                     }}
                   >
                     {/* Ambient Radial Cobalt Aura */}
                     <div
-                      className="absolute w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
-                      style={{ animationDuration: '4s' }}
+                      className="absolute rounded-full bg-blue-500/25 blur-md pointer-events-none animate-pulse"
+                      style={{
+                        width: '0.42em',
+                        height: '0.42em',
+                        animationDuration: '4s',
+                      }}
                     />
 
-                    {/* Interactive 3D WebGL Gemstone */}
-                    <InteractiveGem3D className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
+                    {/* Interactive 3D WebGL Gemstone - Scales 1:1 with font */}
+                    <InteractiveGem3D className="w-full h-full" />
                   </div>
                 </div>
               </span>
