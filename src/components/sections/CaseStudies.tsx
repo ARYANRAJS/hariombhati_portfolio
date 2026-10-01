@@ -154,11 +154,11 @@ export function CaseStudies() {
               scale={1.015}
               className="w-full lg:w-[640px] flex-shrink-0"
             >
-              <div className="w-full h-full glass-panel glass-panel-hover rounded-2xl p-8 sm:p-10 flex flex-col justify-between border border-white/10 hover:border-white/25 transition-all">
+              <div className="w-full h-full glass-panel glass-panel-hover rounded-2xl p-5 sm:p-10 flex flex-col justify-between border border-white/10 hover:border-white/25 transition-all">
                 <div>
                   {/* Card Meta */}
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-white/[0.08]">
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                       <span className="font-mono text-xs text-neutral-500">0{idx + 1}</span>
                       <span className="text-sm font-mono uppercase tracking-wider text-white font-bold">
                         {study.client}
@@ -173,21 +173,21 @@ export function CaseStudies() {
                     </span>
                   </div>
 
-                  {/* Big Stat Callout */}
-                  <div className="grid grid-cols-2 gap-6 mb-6 bg-white/[0.02] border border-white/[0.06] rounded-xl p-6">
-                    <div>
-                      <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-1">
+                  {/* Big Stat Callout - Responsive Stack on Mobile to prevent text collision */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 bg-white/[0.02] border border-white/[0.06] rounded-xl p-4 sm:p-6 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.06]">
+                    <div className="min-w-0 pb-3 sm:pb-0">
+                      <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-1">
                         Primary ROAS
                       </div>
-                      <div className="text-4xl sm:text-5xl font-mono font-bold text-white tracking-tight">
+                      <div className="text-3xl sm:text-4xl lg:text-5xl font-mono font-bold text-white tracking-tight break-words">
                         {study.roas}
                       </div>
                     </div>
-                    <div>
-                      <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-1">
+                    <div className="min-w-0 pt-3 sm:pt-0 sm:pl-6">
+                      <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-neutral-500 mb-1">
                         {study.metricLabel}
                       </div>
-                      <div className="text-3xl sm:text-4xl font-mono font-bold text-neutral-200 tracking-tight">
+                      <div className="text-2xl sm:text-3xl lg:text-4xl font-mono font-bold text-neutral-200 tracking-tight break-words">
                         {study.revenue}
                       </div>
                     </div>
@@ -223,7 +223,7 @@ export function CaseStudies() {
                     href={study.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black hover:bg-neutral-200 text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)] shrink-0 cursor-pointer"
+                    className="group inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white text-black hover:bg-neutral-200 text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)] w-full sm:w-auto shrink-0 cursor-pointer"
                   >
                     <span>{study.linkLabel}</span>
                     <ArrowUpRight

@@ -99,30 +99,30 @@ export function Hero() {
             </div>
 
             {/* Verified Stats Strip */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/[0.08] max-w-lg">
-              <div>
-                <div className="text-2xl sm:text-3xl font-mono font-bold text-white">
+            <div className="grid grid-cols-3 gap-2 sm:gap-6 pt-8 border-t border-white/[0.08] max-w-lg">
+              <div className="min-w-0">
+                <div className="text-xl sm:text-3xl font-mono font-bold text-white tracking-tight truncate">
                   <CountUp prefix="₹" end={4.1} suffix="L+" duration={2000} />
                 </div>
-                <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mt-1">
+                <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-neutral-500 mt-1 truncate">
                   Direct Revenue
                 </div>
               </div>
 
-              <div className="border-x border-white/[0.08] px-4">
-                <div className="text-2xl sm:text-3xl font-mono font-bold text-white">
+              <div className="border-x border-white/[0.08] px-2 sm:px-4 min-w-0">
+                <div className="text-xl sm:text-3xl font-mono font-bold text-white tracking-tight truncate">
                   <CountUp end={4} suffix="x" /> to <CountUp end={7} suffix="x" />
                 </div>
-                <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mt-1">
+                <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-neutral-500 mt-1 truncate">
                   Average ROAS
                 </div>
               </div>
 
-              <div>
-                <div className="text-2xl sm:text-3xl font-mono font-bold text-white">
+              <div className="min-w-0 pl-1 sm:pl-0">
+                <div className="text-xl sm:text-3xl font-mono font-bold text-white tracking-tight truncate">
                   <CountUp end={8} suffix="+" />
                 </div>
-                <div className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 mt-1">
+                <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-neutral-500 mt-1 truncate">
                   Clients Scaled
                 </div>
               </div>
