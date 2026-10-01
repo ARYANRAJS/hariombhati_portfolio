@@ -213,22 +213,24 @@ export function Footer() {
               <span className="relative inline-block">
                 <span>ı</span>
                 {/* ── Interactive 3D WebGL Cobalt Blue Gem Centered Exactly on the Dot of 'i' ── */}
-                <div
-                  ref={gemRef}
-                  className="absolute left-1/2 -translate-x-1/2 top-[16%] sm:top-[18%] -translate-y-1/2 pointer-events-auto flex items-center justify-center will-change-transform z-20"
-                  style={{
-                    filter:
-                      'drop-shadow(0 0 25px rgba(37, 99, 235, 0.85)) drop-shadow(0 0 55px rgba(59, 130, 246, 0.45))',
-                  }}
-                >
-                  {/* Ambient Radial Cobalt Aura */}
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 -translate-y-[40%] pointer-events-auto flex items-center justify-center z-20">
                   <div
-                    className="absolute w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
-                    style={{ animationDuration: '4s' }}
-                  />
+                    ref={gemRef}
+                    className="relative flex items-center justify-center will-change-transform"
+                    style={{
+                      filter:
+                        'drop-shadow(0 0 25px rgba(37, 99, 235, 0.85)) drop-shadow(0 0 55px rgba(59, 130, 246, 0.45))',
+                    }}
+                  >
+                    {/* Ambient Radial Cobalt Aura */}
+                    <div
+                      className="absolute w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-blue-500/30 blur-2xl pointer-events-none animate-pulse"
+                      style={{ animationDuration: '4s' }}
+                    />
 
-                  {/* Interactive 3D WebGL Gemstone */}
-                  <InteractiveGem3D className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
+                    {/* Interactive 3D WebGL Gemstone */}
+                    <InteractiveGem3D className="w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32" />
+                  </div>
                 </div>
               </span>
             </span>
