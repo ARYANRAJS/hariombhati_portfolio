@@ -101,7 +101,7 @@ export function Hero() {
             {/* Verified Stats Strip */}
             <div className="grid grid-cols-3 gap-2 sm:gap-6 pt-8 border-t border-white/[0.08] max-w-lg">
               <div className="min-w-0">
-                <div className="text-xl sm:text-3xl font-mono font-bold text-white tracking-tight truncate">
+                <div className="text-lg sm:text-2xl md:text-3xl font-mono font-bold text-white tracking-tight whitespace-nowrap">
                   <CountUp prefix="₹" end={4.1} suffix="L+" duration={2000} />
                 </div>
                 <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-neutral-500 mt-1 truncate">
@@ -110,8 +110,8 @@ export function Hero() {
               </div>
 
               <div className="border-x border-white/[0.08] px-2 sm:px-4 min-w-0">
-                <div className="text-xl sm:text-3xl font-mono font-bold text-white tracking-tight truncate">
-                  <CountUp end={4} suffix="x" /> to <CountUp end={7} suffix="x" />
+                <div className="text-lg sm:text-2xl md:text-3xl font-mono font-bold text-white tracking-tight whitespace-nowrap">
+                  <CountUp end={4} suffix="x" />–<CountUp end={7} suffix="x" />
                 </div>
                 <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-neutral-500 mt-1 truncate">
                   Average ROAS
@@ -119,7 +119,7 @@ export function Hero() {
               </div>
 
               <div className="min-w-0 pl-1 sm:pl-0">
-                <div className="text-xl sm:text-3xl font-mono font-bold text-white tracking-tight truncate">
+                <div className="text-lg sm:text-2xl md:text-3xl font-mono font-bold text-white tracking-tight whitespace-nowrap">
                   <CountUp end={8} suffix="+" />
                 </div>
                 <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-neutral-500 mt-1 truncate">
