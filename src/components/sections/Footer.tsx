@@ -22,14 +22,15 @@ export function Footer() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // 1. Unified Staged Timeline: When user reaches footer, top bar appears (Stage 1).
-      // As user continues scrolling down, "Bhati" rises up from below (Stage 2).
+      // Fixed Curtain Reveal: The footer is fixed behind <main>.
+      // As the user scrolls into the footer spacer wrapper, the curtain lifts up,
+      // and we apply an elegant, subtle depth parallax to the fixed elements.
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: footerRef.current,
-          start: 'top 78%',
+          trigger: '#footer-reveal-wrapper',
+          start: 'top bottom',
           end: 'bottom bottom',
-          scrub: 1.2,
+          scrub: 1,
         },
       });
 
@@ -37,15 +38,13 @@ export function Footer() {
         tl.fromTo(
           nameRef.current,
           {
-            yPercent: 115,
-            opacity: 0,
-            scale: 0.94,
+            y: 40,
+            opacity: 0.7,
           },
           {
-            yPercent: 0,
+            y: 0,
             opacity: 1,
-            scale: 1,
-            ease: 'power2.out',
+            ease: 'none',
           },
           0
         );
@@ -55,37 +54,31 @@ export function Footer() {
         tl.fromTo(
           gemRef.current,
           {
-            scale: 0.15,
-            opacity: 0,
+            scale: 0.82,
+            opacity: 0.7,
           },
           {
             scale: 1,
             opacity: 1,
-            ease: 'power2.out',
+            ease: 'none',
           },
-          0.12
+          0
         );
       }
 
-      // 3. Top metadata bar subtle slide up
       if (topBarRef.current) {
-        gsap.fromTo(
+        tl.fromTo(
           topBarRef.current,
           {
-            y: 35,
-            opacity: 0.5,
+            y: 20,
+            opacity: 0.6,
           },
           {
             y: 0,
             opacity: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 98%',
-              end: 'top 75%',
-              scrub: 0.8,
-            },
-          }
+            ease: 'none',
+          },
+          0
         );
       }
     }, footerRef);
@@ -116,11 +109,11 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="relative bg-[#050505] border-t border-white/[0.08] pt-12 sm:pt-16 pb-6 overflow-hidden text-neutral-400 select-none"
+      className="w-full h-full flex flex-col justify-between bg-[#050505] border-t border-white/[0.08] pt-6 sm:pt-12 pb-3 sm:pb-5 overflow-hidden text-neutral-400 select-none"
     >
       {/* ── Top Bar (Minimalist Editorial Meta & Links) ── */}
-      <div ref={topBarRef} className="max-w-7xl mx-auto px-6 sm:px-8 will-change-transform">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-12 border-b border-white/[0.06]">
+      <div ref={topBarRef} className="max-w-7xl mx-auto px-5 sm:px-8 w-full will-change-transform">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-5 pb-4 sm:pb-8 border-b border-white/[0.06]">
           {/* Left: Brand Identity & Location */}
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <span className="font-mono text-xs tracking-widest uppercase text-white font-semibold">
@@ -197,7 +190,7 @@ export function Footer() {
       </div>
 
       {/* ── Giant Editorial Typographic Banner: "Bhati" with Smooth Scroll Reveal ── */}
-      <div className="relative w-full overflow-hidden flex justify-center items-end select-none pointer-events-none pt-12 sm:pt-20 pb-4 sm:pb-8 min-h-[42vh] sm:min-h-[50vh]">
+      <div className="relative w-full overflow-hidden flex-1 flex justify-center items-center sm:items-end select-none pointer-events-none pb-4 sm:pb-4">
         <div className="relative inline-flex items-baseline justify-center tracking-tighter">
           {/* Main Giant Word with Smooth Scrub Rise Animation */}
           <div ref={nameRef} className="will-change-transform inline-block">
