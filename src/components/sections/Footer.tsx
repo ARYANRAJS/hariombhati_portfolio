@@ -109,11 +109,11 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="w-full h-full flex flex-col justify-between bg-[#050505] border-t border-white/[0.08] pt-6 sm:pt-12 pb-3 sm:pb-5 overflow-hidden text-neutral-400 select-none"
+      className="w-full h-full flex flex-col justify-between bg-[#050505] border-t border-white/[0.08] pt-4 sm:pt-6 pb-2 sm:pb-3 overflow-hidden text-neutral-400 select-none"
     >
       {/* ── Top Bar (Minimalist Editorial Meta & Links) ── */}
       <div ref={topBarRef} className="max-w-7xl mx-auto px-5 sm:px-8 w-full will-change-transform">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-5 pb-4 sm:pb-8 border-b border-white/[0.06]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-white/[0.06]">
           {/* Left: Brand Identity & Location */}
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
             <span className="font-mono text-xs tracking-widest uppercase text-white font-semibold">
@@ -190,7 +190,7 @@ export function Footer() {
       </div>
 
       {/* ── Giant Editorial Typographic Banner: "Bhati" with Smooth Scroll Reveal ── */}
-      <div className="relative w-full overflow-hidden flex-1 flex justify-center items-center sm:items-end select-none pointer-events-none pb-4 sm:pb-4">
+      <div className="relative w-full overflow-hidden flex-1 flex justify-center items-end select-none pointer-events-none pb-1 sm:pb-2">
         <div className="relative inline-flex items-baseline justify-center tracking-tighter">
           {/* Main Giant Word with Smooth Scrub Rise Animation */}
           <div ref={nameRef} className="will-change-transform inline-block">

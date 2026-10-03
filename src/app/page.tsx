@@ -48,9 +48,9 @@ export default function Home() {
         {/* Fixed Curtain Reveal Footer */}
         <div
           id="footer-reveal-wrapper"
-          className="relative w-full h-[88vh] sm:h-[82vh] lg:h-[88vh] min-h-[600px] sm:min-h-[580px] [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]"
+          className="relative w-full h-[380px] sm:h-[440px] lg:h-[490px] [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]"
         >
-          <div className="fixed bottom-0 left-0 w-full h-[88vh] sm:h-[82vh] lg:h-[88vh] min-h-[600px] sm:min-h-[580px] z-0">
+          <div className="fixed bottom-0 left-0 w-full h-[380px] sm:h-[440px] lg:h-[490px] z-0">
             <Footer />
           </div>
         </div>
